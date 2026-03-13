@@ -26,3 +26,4 @@ out/
 coverage/
 .cache/
 *.pem
+.env*.local

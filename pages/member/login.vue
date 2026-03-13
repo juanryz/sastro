@@ -1,141 +1,28 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-amber-50 to-yellow-50 flex items-center justify-center px-4">
-    <div class="w-full max-w-md">
-      <div class="bg-white rounded-lg shadow-lg p-8">
-        <!-- Logo -->
-        <div class="text-center mb-8">
-          <div class="w-16 h-16 bg-amber-600 rounded-lg flex items-center justify-center mx-auto mb-4">
-            <span class="text-white font-bold text-2xl">SJ</span>
-          </div>
-          <h1 class="text-2xl font-bold text-gray-900">Member Login</h1>
-          <p class="text-gray-600 mt-2">Sastro Jendro Hayuningrat Pangruwating</p>
-        </div>
-
-        <!-- Login Form -->
-        <form @submit.prevent="login" class="space-y-6">
-          <!-- Email/Username -->
-          <div>
-            <label for="username" class="block text-gray-700 font-semibold mb-2">
-              Email atau Username
-            </label>
-            <input
-              id="username"
-              v-model="credentials.username"
-              type="text"
-              required
-              autofocus
-              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-600"
-              placeholder="Email atau username"
-            />
-          </div>
-
-          <!-- Password -->
-          <div>
-            <label for="password" class="block text-gray-700 font-semibold mb-2">Password</label>
-            <input
-              id="password"
-              v-model="credentials.password"
-              type="password"
-              required
-              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-600"
-              placeholder="••••••••"
-            />
-          </div>
-
-          <!-- Remember Me -->
-          <div class="flex items-center">
-            <input
-              id="remember"
-              v-model="credentials.rememberMe"
-              type="checkbox"
-              class="h-4 w-4 text-amber-600 focus:ring-amber-600 border-gray-300 rounded"
-            />
-            <label for="remember" class="ml-2 block text-sm text-gray-700">
-              Ingat saya di perangkat ini
-            </label>
-          </div>
-
-          <!-- Error Message -->
-          <div v-if="error" class="p-4 bg-red-100 text-red-800 rounded-lg text-sm">
-            {{ error }}
-          </div>
-
-          <!-- Submit Button -->
-          <button
-            type="submit"
-            :disabled="isLoading"
-            class="w-full px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition disabled:bg-gray-400 disabled:cursor-not-allowed font-semibold"
-          >
-            {{ isLoading ? 'Sedang login...' : 'Login' }}
-          </button>
-        </form>
-
-        <!-- Divider -->
-        <div class="mt-6">
-          <div class="relative mb-6">
-            <div class="absolute inset-0 flex items-center">
-              <div class="w-full border-t border-gray-300"></div>
-            </div>
-            <div class="relative flex justify-center text-sm">
-              <span class="px-2 bg-white text-gray-500">Atau</span>
-            </div>
-          </div>
-
-          <!-- Links -->
-          <div class="space-y-3">
-            <NuxtLink
-              to="/"
-              class="block text-center px-4 py-2 border border-amber-600 text-amber-600 rounded-lg hover:bg-amber-50 transition font-semibold"
-            >
-              Kembali ke Beranda
-            </NuxtLink>
-            <NuxtLink
-              to="/register"
-              class="block text-center px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition font-semibold"
-            >
-              Belum punya akun? Daftar
-            </NuxtLink>
-          </div>
-        </div>
+  <div class="min-h-screen bg-slate-950 flex items-center justify-center p-4">
+    <div class="w-full max-w-md rounded-3xl bg-slate-900/90 border border-white/10 p-6 shadow-xl">
+      <div class="text-center mb-5">
+        <div class="mx-auto w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-500 to-cyan-400 flex items-center justify-center text-white text-2xl font-bold">SJ</div>
+        <h1 class="mt-3 text-2xl font-bold text-white">Member Sign In</h1>
+        <p class="text-slate-300">Masuk dengan akun atau Google.</p>
       </div>
+      <button @click="loginWithGoogle" class="w-full rounded-xl border border-slate-600 bg-slate-800 py-2.5 text-sm font-semibold text-slate-100 hover:bg-slate-700 flex items-center justify-center gap-2">🟢 Sign in with Google</button>
+      <div class="mt-4 text-slate-400 text-center text-xs uppercase tracking-[0.2em]">atau</div>
+      <form @submit.prevent="login" class="mt-3 space-y-3">
+        <input v-model="credentials.username" type="text" placeholder="Email atau Username" required class="w-full rounded-xl border border-slate-600 bg-slate-800 px-3 py-2 text-slate-100" />
+        <input v-model="credentials.password" type="password" placeholder="Password" required class="w-full rounded-xl border border-slate-600 bg-slate-800 px-3 py-2 text-slate-100" />
+        <button type="submit" :disabled="isLoading" class="w-full rounded-xl bg-gradient-to-r from-indigo-500 to-cyan-400 py-2 text-slate-900 font-semibold">{{ isLoading ? 'Memproses...' : 'Masuk' }}</button>
+      </form>
+      <div v-if="error" class="mt-3 rounded-xl border border-red-400/30 bg-red-500/10 p-2 text-xs text-red-200">{{ error }}</div>
+      <div class="mt-4 text-center text-slate-300 text-sm">Belum punya akun? <NuxtLink to="/register" class="text-indigo-300 hover:text-indigo-200 font-semibold">Daftar</NuxtLink></div>
     </div>
   </div>
 </template>
-
 <script setup>
-definePageMeta({
-  layout: false
-})
-
-const credentials = ref({
-  username: '',
-  password: '',
-  rememberMe: false
-})
-
+definePageMeta({ layout: false })
+const credentials = ref({ username: '', password: '' })
 const isLoading = ref(false)
 const error = ref('')
-
-const login = async () => {
-  error.value = ''
-  isLoading.value = true
-
-  try {
-    // const response = await $fetch('/api/auth/member-login', {
-    //   method: 'POST',
-    //   body: credentials.value
-    // })
-
-    // Mock login
-    if (credentials.value.username && credentials.value.password) {
-      navigateTo('/member/profile')
-    } else {
-      error.value = 'Username/email dan password harus diisi'
-    }
-  } catch (e) {
-    error.value = 'Username/email atau password salah'
-  } finally {
-    isLoading.value = false
-  }
-}
+const login = async () => { error.value=''; isLoading.value=true; if(!credentials.value.username||!credentials.value.password){error.value='Username/email dan password harus diisi'; isLoading.value=false; return}; try{navigateTo('/member/profile')}catch{error.value='Login gagal.'}finally{isLoading.value=false} }
+const loginWithGoogle = () => { window.location.href = '/api/auth/google' }
 </script>
