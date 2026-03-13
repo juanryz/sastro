@@ -9,10 +9,10 @@
     </div>
 
     <!-- Organization Chart -->
-    <div v-if="organizationStructure" class="bg-white rounded-lg shadow-lg p-8 mb-12">
+    <div v-if="organizationStructure" class="bg-white rounded-sm shadow-lg p-8 mb-12">
       <!-- Ketua -->
       <div class="text-center mb-12">
-        <div class="inline-block bg-amber-600 text-white rounded-lg p-6 mb-4 min-w-64">
+        <div class="inline-block bg-amber-600 text-white rounded-sm p-6 mb-4 min-w-64">
           <p class="text-sm font-semibold text-amber-100 mb-1">Posisi</p>
           <p class="text-2xl font-bold">{{ organizationStructure.ketua.name }}</p>
           <p class="text-amber-200 text-sm mt-2">{{ organizationStructure.ketua.title }}</p>
@@ -31,7 +31,7 @@
           :key="wakil._id"
           class="text-center"
         >
-          <div class="bg-amber-100 text-amber-900 rounded-lg p-6 inline-block min-w-56">
+          <div class="bg-amber-100 text-amber-900 rounded-sm p-6 inline-block min-w-56">
             <p class="text-sm font-semibold mb-1">{{ wakil.title }}</p>
             <p class="text-xl font-bold">{{ wakil.name }}</p>
             <p class="text-sm text-amber-700 mt-2">{{ wakil.email }}</p>
@@ -46,7 +46,7 @@
           <div
             v-for="department in organizationStructure.departments"
             :key="department._id"
-            class="bg-gradient-to-br from-yellow-50 to-amber-50 rounded-lg p-6 border border-amber-200"
+            class="bg-blue-600 rounded-sm p-6 border border-amber-200"
           >
             <h3 class="text-lg font-bold text-gray-900 mb-4">{{ department.name }}</h3>
             <div class="space-y-3">
@@ -70,14 +70,14 @@
     </div>
 
     <!-- Contact CTA -->
-    <div class="bg-amber-50 rounded-lg p-8 text-center border border-amber-200">
+    <div class="bg-amber-50 rounded-sm p-8 text-center border border-amber-200">
       <h2 class="text-2xl font-bold text-gray-900 mb-4">Ingin Bergabung?</h2>
       <p class="text-gray-700 mb-6">
         Kami terbuka untuk anggota baru yang ingin berkontribusi dalam melestarikan budaya Jawa
       </p>
       <NuxtLink
         to="/kontak"
-        class="px-6 py-3 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition inline-block"
+        class="px-6 py-3 bg-amber-600 text-white rounded-sm hover:bg-amber-700 transition inline-block"
       >
         Hubungi Kami
       </NuxtLink>

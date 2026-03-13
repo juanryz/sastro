@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Member Header -->
-    <header class="bg-gradient-to-r from-amber-600 to-yellow-500 text-white py-12">
+    <header class="bg-blue-600 text-white py-12">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center">
           <div>
@@ -10,7 +10,7 @@
           </div>
           <button
             @click="logout"
-            class="px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition"
+            class="px-6 py-2 bg-red-600 text-white rounded-sm hover:bg-red-700 transition"
           >
             Logout
           </button>
@@ -68,7 +68,7 @@
           <!-- Main Profile Info -->
           <div class="lg:col-span-2 space-y-6">
             <!-- Personal Information -->
-            <div class="bg-white rounded-lg shadow p-6">
+            <div class="bg-white rounded-sm shadow p-6">
               <h2 class="text-2xl font-bold text-gray-900 mb-6">Informasi Pribadi</h2>
 
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
@@ -111,14 +111,14 @@
 
               <button
                 @click="editingProfile = !editingProfile"
-                class="mt-6 px-6 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition"
+                class="mt-6 px-6 py-2 bg-amber-600 text-white rounded-sm hover:bg-amber-700 transition"
               >
                 ✏️ Edit Profil
               </button>
             </div>
 
             <!-- Minat & Keahlian -->
-            <div class="bg-white rounded-lg shadow p-6">
+            <div class="bg-white rounded-sm shadow p-6">
               <h2 class="text-2xl font-bold text-gray-900 mb-6">Minat & Keahlian</h2>
 
               <div class="mb-6">
@@ -141,26 +141,26 @@
             </div>
 
             <!-- Account Security -->
-            <div class="bg-white rounded-lg shadow p-6">
+            <div class="bg-white rounded-sm shadow p-6">
               <h2 class="text-2xl font-bold text-gray-900 mb-6">Keamanan Akun</h2>
 
               <div class="space-y-4">
-                <div class="flex justify-between items-center p-4 border border-gray-200 rounded-lg">
+                <div class="flex justify-between items-center p-4 border border-gray-200 rounded-sm">
                   <div>
                     <p class="font-semibold text-gray-900">Ubah Password</p>
                     <p class="text-sm text-gray-600">Perbarui password akun Anda secara berkala</p>
                   </div>
-                  <button class="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition">
+                  <button class="px-4 py-2 bg-gray-600 text-white rounded-sm hover:bg-gray-700 transition">
                     Ubah
                   </button>
                 </div>
 
-                <div class="flex justify-between items-center p-4 border border-gray-200 rounded-lg">
+                <div class="flex justify-between items-center p-4 border border-gray-200 rounded-sm">
                   <div>
                     <p class="font-semibold text-gray-900">Two-Factor Authentication</p>
                     <p class="text-sm text-gray-600">Aktifkan untuk keamanan lebih</p>
                   </div>
-                  <button class="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition">
+                  <button class="px-4 py-2 bg-gray-600 text-white rounded-sm hover:bg-gray-700 transition">
                     Aktifkan
                   </button>
                 </div>
@@ -171,7 +171,7 @@
           <!-- Sidebar -->
           <div class="space-y-6">
             <!-- Member Status -->
-            <div class="bg-white rounded-lg shadow p-6">
+            <div class="bg-white rounded-sm shadow p-6">
               <h3 class="text-lg font-bold text-gray-900 mb-4">Status Membership</h3>
 
               <div class="space-y-3">
@@ -207,7 +207,7 @@
             </div>
 
             <!-- Quick Stats -->
-            <div class="bg-amber-50 rounded-lg shadow p-6 border border-amber-200">
+            <div class="bg-amber-50 rounded-sm shadow p-6 border border-amber-200">
               <h3 class="text-lg font-bold text-gray-900 mb-4">Statistik</h3>
 
               <div class="space-y-3">
@@ -223,7 +223,7 @@
             </div>
 
             <!-- Helpful Links -->
-            <div class="bg-white rounded-lg shadow p-6">
+            <div class="bg-white rounded-sm shadow p-6">
               <h3 class="text-lg font-bold text-gray-900 mb-4">Bantuan</h3>
 
               <div class="space-y-2">
@@ -244,16 +244,16 @@
 
       <!-- Activity Tab -->
       <div v-if="activeTab === 'activity'" class="space-y-6">
-        <div class="bg-white rounded-lg shadow p-6">
+        <div class="bg-white rounded-sm shadow p-6">
           <h2 class="text-2xl font-bold text-gray-900 mb-6">Aktivitas Anda</h2>
 
           <div class="space-y-4">
             <div
               v-for="activity in memberActivities"
               :key="activity.id"
-              class="flex gap-4 p-4 border border-gray-200 rounded-lg hover:border-amber-300 transition"
+              class="flex gap-4 p-4 border border-gray-200 rounded-sm hover:border-amber-300 transition"
             >
-              <div class="w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center flex-shrink-0">
+              <div class="w-12 h-12 bg-amber-100 rounded-sm flex items-center justify-center flex-shrink-0">
                 <span class="text-xl">{{ activity.icon }}</span>
               </div>
               <div class="flex-1">
