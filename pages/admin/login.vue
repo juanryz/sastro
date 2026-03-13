@@ -194,7 +194,9 @@ const login = async () => {
 
 const loginWithGoogle = async () => {
   try {
-      window.location.href = '/api/auth/google'
+    window.location.href = '/api/auth/google'
+  } catch (e) {
+    error.value = 'Login dengan Google gagal'
   }
 }
 </script>

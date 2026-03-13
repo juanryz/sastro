@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Sastro Jendro</title>
+    <link>https://sastro.vercel.app/</link>
+    <description>Latest updates from Sastro Jendro</description>
+    <item>
+      <title>Welcome</title>
+      <link>https://sastro.vercel.app/</link>
+      <description>Welcome to Sastro Jendro</description>
+      <pubDate>Fri, 14 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>https://sastro.vercel.app/</guid>
+    </item>
+  </channel>
+</rss>

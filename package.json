@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "nuxt": "^3.8.0",
+    "@nuxtjs/tailwindcss": "^6.0.0",
     "vue": "^3.3.0",
     "vuetify": "^3.4.0",
     "mongodb": "^6.3.0",
