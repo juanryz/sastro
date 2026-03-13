@@ -17,6 +17,7 @@ async function initializeDatabase() {
 
   try {
     console.log('🔄 Connecting to MongoDB...')
+    console.log('Using MONGODB_URI:', MONGODB_URI.replace(/(mongodb\+srv:\/\/[^:]+:)[^@]+(@.*)/, '$1*****$2'))
     client = new MongoClient(MONGODB_URI)
     await client.connect()
     
