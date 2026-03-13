@@ -1,6 +1,6 @@
 <template>
-  <div class="min-h-screen bg-slate-950 flex items-center justify-center p-4">
-    <div class="w-full max-w-md rounded-3xl bg-slate-900/90 border border-white/10 p-6 shadow-xl">
+  <div class="min-h-screen bg-gradient-to-br from-slate-900 via-slate-950 to-indigo-950 flex items-center justify-center p-4">
+    <div class="w-full max-w-md rounded-3xl bg-white/10 backdrop-blur-xl border border-white/20 p-6 shadow-xl">
       <div class="text-center mb-5">
         <div class="mx-auto w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-500 to-cyan-400 flex items-center justify-center text-white text-2xl font-bold">SJ</div>
         <h1 class="mt-3 text-2xl font-bold text-white">Member Sign In</h1>

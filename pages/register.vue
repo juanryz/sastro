@@ -1,6 +1,6 @@
 <template>
-  <div class="min-h-screen bg-slate-950 flex items-center justify-center p-4">
-    <div class="w-full max-w-3xl rounded-3xl bg-slate-900/90 border border-white/10 p-6 md:p-8 shadow-2xl">
+  <div class="min-h-screen bg-gradient-to-br from-slate-900 via-slate-950 to-indigo-950 flex items-center justify-center p-4">
+    <div class="w-full max-w-3xl rounded-3xl bg-white/10 backdrop-blur-xl border border-white/20 p-6 md:p-8 shadow-2xl">
       <div class="text-center text-white mb-4">
         <div class="inline-flex items-center gap-2 rounded-full bg-indigo-500/20 px-3 py-1 text-xs uppercase tracking-[0.2em] font-semibold">Material 3</div>
         <h1 class="text-3xl font-bold mt-3">Daftar Anggota</h1>
