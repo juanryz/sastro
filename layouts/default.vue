@@ -7,11 +7,10 @@
       <div class="rounded-[1.8rem] backdrop-blur-2xl bg-white/70 shadow-[0_8px_40px_-8px_rgba(100,116,139,0.25)] border border-white/80 px-2 py-1.5 flex items-center gap-0.5">
         
         <!-- Logo on left -->
-        <NuxtLink to="/" class="flex items-center gap-2 group ml-2 mr-3 pointer-events-auto">
-          <div class="w-9 h-9 rounded-full bg-white flex items-center justify-center p-0.5 shadow-sm border border-slate-100 group-hover:shadow-md group-hover:border-indigo-100 transition">
-            <img src="/logo.png" alt="Sastro Jendro" class="w-full h-full object-contain drop-shadow-sm" />
+        <NuxtLink to="/" class="flex items-center group ml-3 mr-4 pointer-events-auto">
+          <div class="h-10 w-auto flex items-center justify-center transition group-hover:scale-105">
+            <img src="/logo.png" alt="Sastra Jendra Hayuningrat" class="h-full w-auto object-contain drop-shadow-sm" />
           </div>
-          <p class="text-xs font-extrabold text-slate-800 tracking-wide hidden lg:block">Sastro Jendro</p>
         </NuxtLink>
         <div class="w-px h-5 bg-slate-200 mr-1.5 hidden lg:block"></div>
 
@@ -55,8 +54,8 @@
           <!-- Expand Arrow + Auth -->
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-3">
-              <NuxtLink to="/" class="w-9 h-9 flex-shrink-0 rounded-full bg-white flex items-center justify-center p-0.5 shadow-sm border border-slate-100 active:scale-95 transition-transform">
-                <img src="/logo.png" alt="Sastro Jendro" class="w-full h-full object-contain drop-shadow-sm" />
+              <NuxtLink to="/" class="h-10 w-auto flex-shrink-0 flex items-center justify-center active:scale-95 transition-transform">
+                <img src="/logo.png" alt="Sastra Jendra Hayuningrat" class="h-full w-auto object-contain drop-shadow-sm" />
               </NuxtLink>
               <button @click="mobileExpanded = true" class="flex flex-col items-start text-slate-500 active:scale-95 transition-transform">
                 <div class="flex items-center gap-1.5">
@@ -77,12 +76,8 @@
           <!-- Header -->
           <div class="flex items-center justify-between mb-6 pt-1">
             <div class="flex items-center gap-3">
-              <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center p-1 shadow-sm border border-slate-100">
-                <img src="/logo.png" alt="Sastro Jendro" class="w-full h-full object-contain drop-shadow-sm" />
-              </div>
-              <div>
-                <p class="text-sm font-extrabold text-slate-800">Sastro Jendro</p>
-                <p class="text-[10px] font-bold text-slate-400 tracking-widest uppercase">Menu Navigasi</p>
+              <div class="h-14 w-auto flex items-center justify-center">
+                <img src="/logo.png" alt="Sastra Jendra Hayuningrat" class="h-full w-auto object-contain drop-shadow-sm" />
               </div>
             </div>
             <button @click="mobileExpanded = false" class="w-10 h-10 rounded-2xl bg-slate-100 flex items-center justify-center text-slate-400 hover:text-slate-600 hover:bg-slate-200 transition-all active:scale-90">

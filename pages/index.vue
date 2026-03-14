@@ -2,13 +2,9 @@
   <div class="bg-gradient-to-br from-indigo-50 via-white to-sky-50 text-slate-900">
     <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-10">
       <!-- Logo in Hero -->
-      <div class="flex items-center gap-4 mb-10">
-        <div class="w-16 h-16 rounded-full bg-white flex items-center justify-center p-1 shadow-md border border-slate-100 backdrop-blur-md">
-          <img src="/logo.png" alt="Sastro Jendro" class="w-full h-full object-contain drop-shadow-sm" />
-        </div>
-        <div>
-          <p class="text-lg font-extrabold tracking-wide text-slate-800">Sastro Jendro</p>
-          <p class="text-[11px] font-bold text-slate-500 tracking-widest uppercase">Budaya · Kesenian · Komunitas</p>
+      <div class="flex items-center gap-4 mb-10 w-64 md:w-80">
+        <div class="w-full h-auto flex items-center justify-start flex-shrink-0">
+          <img src="/logo.png" alt="Sastra Jendra Hayuningrat" class="w-full h-auto object-contain drop-shadow-md" />
         </div>
       </div>
 
@@ -60,30 +56,31 @@
       </div>
     </section>
 
-    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-      <div class="flex items-center justify-between mb-8">
-        <div>
-          <h2 class="text-3xl font-bold tracking-tight">Koleksi Video</h2>
-          <p class="text-slate-600 mt-1">Dokumentasi pementasan dan edukasi pelestarian budaya Jawa.</p>
-        </div>
+    <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="text-center mb-8">
+        <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-800">Video Highlight</h2>
+        <p class="text-slate-600 mt-3 max-w-2xl mx-auto text-lg">Dokumentasi pementasan untuk melestarikan dan mengedukasi masyarakat tentang budaya Jawa.</p>
       </div>
-      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-        <div v-for="video in videos" :key="video.id" class="rounded-3xl border border-white/60 bg-white/50 shadow-xl shadow-slate-200/50 backdrop-blur-sm overflow-hidden flex flex-col transition hover:shadow-2xl hover:shadow-indigo-200/50 duration-300">
-          <div class="relative w-full aspect-video border-b border-white/60 bg-slate-100">
+      
+      <div class="rounded-[2.5rem] p-3 sm:p-4 bg-white/50 backdrop-blur-xl border border-white/60 shadow-2xl shadow-indigo-100/50">
+        <div class="rounded-[2rem] bg-white overflow-hidden shadow-inner flex flex-col">
+          <div class="relative w-full aspect-video border-b border-slate-100 bg-slate-900">
             <iframe 
               class="absolute inset-0 w-full h-full"
-              :src="video.embedUrl" 
-              :title="video.title" 
+              src="https://www.youtube.com/embed/YsSth8kints" 
+              title="Sastra Jendra Hayuningrat Pangruwating Diyu" 
               frameborder="0" 
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
               referrerpolicy="strict-origin-when-cross-origin" 
               allowfullscreen>
             </iframe>
           </div>
-          <div class="p-6 flex-1 flex flex-col">
-            <p class="inline-flex max-w-max items-center gap-2 px-3 py-1 rounded-full bg-indigo-100/80 text-indigo-600 text-xs font-semibold uppercase tracking-[0.2em] mb-4">{{ video.category }}</p>
-            <h3 class="text-xl font-bold tracking-tight text-slate-800 mb-3">{{ video.title }}</h3>
-            <p class="text-slate-600 text-sm leading-relaxed flex-1">{{ video.description }}</p>
+          <div class="p-8 md:p-10 flex-1 flex flex-col text-center">
+            <div class="mb-4">
+              <span class="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-indigo-50 text-indigo-600 text-sm font-bold uppercase tracking-[0.2em]">Pementasan</span>
+            </div>
+            <h3 class="text-2xl md:text-3xl font-extrabold tracking-tight text-slate-800 mb-4">Sastra Jendra Hayuningrat Pangruwating Diyu</h3>
+            <p class="text-slate-600 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">Saksikan pementasan epik dari "Sastra Jendra". Sebuah karya klasik yang mengajarkan kebijaksanaan, peleburan sifat buruk, dan keharmonisan hidup.</p>
           </div>
         </div>
       </div>
@@ -113,30 +110,6 @@
 </template>
 
 <script setup>
-const videos = ref([
-  { 
-    id: 1, 
-    category: 'Pementasan',
-    title: 'Sastra Jendra Hayuningrat Pangruwating Diyu', 
-    description: 'Saksikan pementasan epik dari "Sastra Jendra". Sebuah karya klasik yang mengajarkan kebijaksanaan, peleburan sifat buruk, dan keharmonisan hidup.',
-    embedUrl: 'https://www.youtube.com/embed/YsSth8kints'
-  },
-  { 
-    id: 2, 
-    category: 'Edukasi',
-    title: 'Filosofi Gamelan dan Keselarasan Hidup', 
-    description: 'Pelajari makna filosofis di balik alunan instrumen gamelan. Harmoni yang tercipta mencerminkan keselarasan antara manusia, alam, dan Tuhan.',
-    embedUrl: 'https://www.youtube.com/embed/9lsfM68JM7M'
-  },
-  { 
-    id: 3, 
-    category: 'Seni Tari',
-    title: 'Kehalusan Budi dalam Tari Klasik', 
-    description: 'Menikmati keanggunan tari klasik Jawa. Ekspresi rasa lewat wiraga, wirama, dan wirasa yang mengajarkan letak pengendalian diri yang luhur.',
-    embedUrl: 'https://www.youtube.com/embed/iXXIBS7BSCQ'
-  }
-])
-
 const latestArticles = ref([
   { _id: '1', title: 'Peluncuran Pusat Pembelajaran Wayang Kulit', excerpt: 'Kami dengan bangga mengumumkan pembukaan pusat pembelajaran wayang kulit yang akan menjadi tempat belajar bagi generasi muda...', slug: 'peluncuran-pusat-pembelajaran', createdAt: new Date() },
   { _id: '2', title: 'Festival Kesenian Jawa 2026', excerpt: 'Festival tahunan menampilkan gamelan, tari, dan wayang dengan peserta dari berbagai desa.', slug: 'festival-kesenian-jawa-2026', createdAt: new Date(Date.now() - 86400000) },

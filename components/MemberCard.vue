@@ -12,8 +12,8 @@
       <div class="absolute top-0 left-0 right-0 p-6 border-b-2 border-amber-600 border-opacity-30">
         <div class="flex justify-between items-start">
           <!-- Logo -->
-          <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-sm">
-            <img src="/logo.png" alt="Sastro Jendro" class="w-full h-full object-contain p-0.5" />
+          <div class="w-24 h-auto flex items-center justify-center">
+            <img src="/logo.png" alt="Sastra Jendra" class="w-full h-auto object-contain drop-shadow-sm" />
           </div>
           <!-- Member Since -->
           <div class="text-right">

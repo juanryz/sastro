@@ -18,8 +18,8 @@
       <!-- Sidebar -->
       <aside class="w-64 bg-slate-50 border-r border-slate-200 text-white min-h-screen p-6">
         <div class="mb-8">
-          <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center mb-3 shadow-sm border border-slate-200">
-            <img src="/logo.png" alt="Sastro Jendro" class="w-full h-full object-contain drop-shadow-sm p-0.5" />
+          <div class="w-24 h-auto flex items-center mb-3">
+            <img src="/logo.png" alt="Sastra Jendra" class="w-full h-auto object-contain drop-shadow-sm" />
           </div>
           <h2 class="text-lg font-bold">Menu</h2>
         </div>
