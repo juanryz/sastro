@@ -1,7 +1,8 @@
 <template>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-slate-900">
+    <PageLoader />
     <!-- Page Header -->
-    <div class="mb-12 text-center max-w-3xl mx-auto">
+    <div class="reveal mb-12 text-center max-w-3xl mx-auto">
       <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight mb-4">Berita & Artikel</h1>
       <p class="text-lg text-slate-600">
         Tetap update dengan kabar terbaru, kegiatan komunitas, dan artikel menginspirasi seputar pelestarian budaya Jawa.
@@ -38,7 +39,7 @@
       <article
         v-for="article in filteredArticles"
         :key="article._id"
-        class="group flex flex-col bg-white/50 backdrop-blur-xl border border-white/80 rounded-[2rem] overflow-hidden shadow-lg shadow-indigo-100/50 hover:shadow-2xl hover:shadow-indigo-200/60 hover:-translate-y-1 transition-all duration-300"
+        class="reveal group flex flex-col bg-white/50 backdrop-blur-xl border border-white/80 rounded-[2rem] overflow-hidden shadow-lg shadow-indigo-100/50 hover:shadow-2xl hover:shadow-indigo-200/60 hover:-translate-y-1 transition-all duration-300"
       >
         <div class="h-48 bg-gradient-to-br from-indigo-100 via-white to-sky-100 relative overflow-hidden flex items-center justify-center">
           <div class="absolute inset-0 bg-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -101,57 +102,12 @@
 
 <script setup>
 import { ref, computed } from 'vue'
+import { useReveal } from '~/composables/useReveal'
 
-const articles = ref([
-  {
-    _id: '1',
-    title: 'Peluncuran Pusat Pembelajaran Wayang Kulit',
-    excerpt: 'Kami dengan bangga mengumumkan pembukaan pusat pembelajaran wayang kulit, menjadi tempat belajar khusus bagi generasi muda yang tertarik dengan kesenian ini. Program ini mencakup dasar-dasar dalang, musik iringan, dan pembuatan wayang.',
-    slug: 'peluncuran-pusat-pembelajaran',
-    category: 'pendidikan',
-    createdAt: new Date('2026-03-10')
-  },
-  {
-    _id: '2',
-    title: 'Festival Seni Jawa Sastro Jendro 2026',
-    excerpt: 'Bergabunglah dengan kami dalam merayakan seni dan budaya Jawa di festival tahunan kami! Acara ini akan dimeriahkan oleh pentas tari tradisional, pameran kerajinan tangan lokal, dan kompetisi gamelan antar pemuda.',
-    slug: 'festival-seni-tahunan-2026',
-    category: 'acara',
-    createdAt: new Date('2026-03-05')
-  },
-  {
-    _id: '3',
-    title: 'Kelas Pemuda: Gamelan Tingkat Dasar',
-    excerpt: 'Pendaftaran untuk kelas musik gamelan gelombang kedua telah dibuka. Kelas ini dirancang khusus bagi pemula dengan instruktur profesional. Mari bersama lestarikan alunan nada Nusantara!',
-    slug: 'kelas-pemuda-gamelan-dasar',
-    category: 'seni',
-    createdAt: new Date('2026-02-28')
-  },
-  {
-    _id: '4',
-    title: 'Gotong Royong Rehabilitasi Sanggar Komunitas',
-    excerpt: 'Sabtu lalu, warga dan anggota Yayasan bahu-membahu memperbaiki atap dan panggung sanggar seni agar dapat digunakan dengan nyaman untuk persiapan pentas bulan depan. Terima kasih kepada semua relawan.',
-    slug: 'gotong-royong-rehabilitasi-sanggar',
-    category: 'komunitas',
-    createdAt: new Date('2026-02-15')
-  },
-  {
-    _id: '5',
-    title: 'Mengenal Filosofi Sastra Jendra Hayuningrat',
-    excerpt: 'Sastra Jendra bukan sekadar kisah lakon pewayangan, melainkan sebuah ajaran luhur tentang keselamatan, peleburan angkara murka, dan bagaimana mencapai kedamaian sejati sebagai manusia.',
-    slug: 'mengenal-filosofi-sastra-jendra',
-    category: 'pendidikan',
-    createdAt: new Date('2026-02-01')
-  },
-  {
-    _id: '6',
-    title: 'Rapat Tahunan Koperasi Anggota 2026',
-    excerpt: 'Pemberitahuan kepada seluruh anggota koperasi, rapat tahunan (RAT) akan diselenggarakan untuk membagikan Sisa Hasil Usaha (SHU) dan menyusun program kerja komunitas setahun ke depan.',
-    slug: 'rapat-tahunan-koperasi-2026',
-    category: 'komunitas',
-    createdAt: new Date('2026-01-20')
-  }
-])
+useReveal()
+
+// Use the centralized data store — synced with admin dashboard and homepage
+const { publishedArticles, formatDate } = useAppData()
 
 const searchQuery = ref('')
 const selectedCategory = ref('')
@@ -159,7 +115,7 @@ const currentPage = ref(1)
 const itemsPerPage = 6
 
 const filteredArticles = computed(() => {
-  let filtered = articles.value
+  let filtered = publishedArticles.value
 
   if (searchQuery.value) {
     const term = searchQuery.value.toLowerCase()
@@ -170,11 +126,8 @@ const filteredArticles = computed(() => {
   }
 
   if (selectedCategory.value) {
-    filtered = filtered.filter(a => a.category === selectedCategory.value)
+    filtered = filtered.filter(a => a.category.toLowerCase() === selectedCategory.value)
   }
-
-  // Sorting descending by date
-  filtered.sort((a, b) => b.createdAt - a.createdAt)
 
   return filtered.slice(
     (currentPage.value - 1) * itemsPerPage,
@@ -183,7 +136,7 @@ const filteredArticles = computed(() => {
 })
 
 const totalPages = computed(() => {
-  let filtered = articles.value
+  let filtered = publishedArticles.value
 
   if (searchQuery.value) {
     const term = searchQuery.value.toLowerCase()
@@ -193,17 +146,9 @@ const totalPages = computed(() => {
   }
 
   if (selectedCategory.value) {
-    filtered = filtered.filter(a => a.category === selectedCategory.value)
+    filtered = filtered.filter(a => a.category.toLowerCase() === selectedCategory.value)
   }
 
   return Math.ceil(filtered.length / itemsPerPage)
 })
-
-const formatDate = (date) => {
-  return new Date(date).toLocaleDateString('id-ID', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  })
-}
 </script>

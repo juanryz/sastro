@@ -1,5 +1,8 @@
 export default defineNuxtConfig({
   ssr: true,
+  app: {
+    pageTransition: { name: 'liquid-page', mode: 'out-in' }
+  },
   nitro: {
     prerender: {
       crawlLinks: true,

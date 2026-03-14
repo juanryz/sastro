@@ -71,22 +71,22 @@
             <tbody>
               <tr
                 v-for="member in filteredMembers"
-                :key="member._id"
+                :key="member.id"
                 class="border-b border-gray-200 hover:bg-gray-50"
               >
-                <td class="px-6 py-4 text-sm text-gray-900 font-semibold">{{ member.name }}</td>
+                <td class="px-6 py-4 text-sm text-gray-900 font-semibold">{{ member.fullName }}</td>
                 <td class="px-6 py-4 text-sm text-gray-600">{{ member.position }}</td>
                 <td class="px-6 py-4 text-sm text-gray-600">{{ member.email }}</td>
                 <td class="px-6 py-4 text-sm text-gray-600">{{ member.phone }}</td>
                 <td class="px-6 py-4 text-sm space-x-2">
                   <NuxtLink
-                    :to="`/admin/anggota/${member._id}/edit`"
+                    :to="`/admin/anggota/${member.id}/edit`"
                     class="text-blue-600 hover:text-blue-700 font-semibold"
                   >
                     Edit
                   </NuxtLink>
                   <button
-                    @click="deleteMember(member._id)"
+                    @click="handleDeleteMember(member.id)"
                     class="text-red-600 hover:text-red-700 font-semibold"
                   >
                     Hapus
@@ -112,22 +112,7 @@ definePageMeta({
   middleware: 'admin'
 })
 
-const members = ref([
-  {
-    _id: '1',
-    name: 'Budi Santoso',
-    position: 'Ketua',
-    email: 'budi@sastrojendro.id',
-    phone: '+62 812 3456 7890'
-  },
-  {
-    _id: '2',
-    name: 'Siti Nurhaliza',
-    position: 'Wakil Ketua I',
-    email: 'siti@sastrojendro.id',
-    phone: '+62 812 3456 7891'
-  }
-])
+const { members, deleteMember: removeMember } = useAppData()
 
 const searchQuery = ref('')
 
@@ -137,15 +122,15 @@ const filteredMembers = computed(() => {
   }
 
   return members.value.filter(member =>
-    member.name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    member.fullName.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
     member.position.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
     member.email.toLowerCase().includes(searchQuery.value.toLowerCase())
   )
 })
 
-const deleteMember = (id) => {
+const handleDeleteMember = (id) => {
   if (confirm('Apakah Anda yakin ingin menghapus anggota ini?')) {
-    members.value = members.value.filter(m => m._id !== id)
+    removeMember(id)
   }
 }
 </script>

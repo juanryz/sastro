@@ -1,6 +1,7 @@
 <template>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-slate-900">
-    <div class="text-center mb-16 max-w-3xl mx-auto">
+    <PageLoader />
+    <div class="reveal text-center mb-16 max-w-3xl mx-auto">
       <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight mb-4 text-slate-800">Hubungi Kami</h1>
       <p class="text-lg text-slate-600">
         Punya pertanyaan seputar keanggotaan, kerja sama, atau ingin berkunjung ke sanggar kami? Jangan ragu untuk menghubungi.
@@ -10,7 +11,7 @@
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-16">
       
       <!-- Info Box (Left) -->
-      <div class="lg:col-span-5 space-y-6">
+      <div class="reveal-left lg:col-span-5 space-y-6">
         <div class="bg-white/60 backdrop-blur-xl border border-white/80 rounded-[2rem] p-8 shadow-xl shadow-slate-200/50 h-full flex flex-col justify-center">
           <h3 class="text-2xl font-bold text-slate-800 mb-8">Informasi Kontak</h3>
           
@@ -59,7 +60,7 @@
       </div>
 
       <!-- Form (Right) -->
-      <div class="lg:col-span-7">
+      <div class="reveal-right delay-1 lg:col-span-7">
         <div class="bg-white/50 backdrop-blur-xl border border-white/80 shadow-2xl shadow-indigo-100/50 rounded-[2.5rem] p-8 md:p-10">
           <form @submit.prevent="submitForm">
             <h3 class="text-2xl font-bold text-slate-800 mb-6">Kirim Pesan Langsung</h3>
@@ -145,6 +146,9 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useReveal } from '~/composables/useReveal'
+
+useReveal()
 
 useHead({
   title: 'Kontak - Sastro Jendro'

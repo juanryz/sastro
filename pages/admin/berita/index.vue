@@ -80,7 +80,7 @@
             </thead>
             <tbody>
               <tr
-                v-for="article in articles"
+                v-for="article in filteredArticles"
                 :key="article._id"
                 class="border-b border-gray-200 hover:bg-gray-50"
               >
@@ -107,7 +107,7 @@
                     Edit
                   </NuxtLink>
                   <button
-                    @click="deleteArticle(article._id)"
+                    @click="handleDeleteArticle(article._id)"
                     class="text-red-600 hover:text-red-700 font-semibold"
                   >
                     Hapus
@@ -128,37 +128,26 @@ definePageMeta({
   middleware: 'admin'
 })
 
-const articles = ref([
-  {
-    _id: '1',
-    title: 'Peluncuran Pusat Pembelajaran Wayang Kulit',
-    category: 'pendidikan',
-    status: 'published',
-    createdAt: new Date('2024-01-15')
-  },
-  {
-    _id: '2',
-    title: 'Festival Seni Tradisional Tahunan',
-    category: 'acara',
-    status: 'draft',
-    createdAt: new Date('2024-01-10')
-  }
-])
+const { articles, deleteArticle: removeArticle, formatDate, toggleArticleStatus } = useAppData()
 
 const searchQuery = ref('')
 const filterStatus = ref('')
 
-const formatDate = (date) => {
-  return new Date(date).toLocaleDateString('id-ID', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  })
-}
+const filteredArticles = computed(() => {
+  let filtered = articles.value
+  if (searchQuery.value) {
+    const term = searchQuery.value.toLowerCase()
+    filtered = filtered.filter(a => a.title.toLowerCase().includes(term))
+  }
+  if (filterStatus.value) {
+    filtered = filtered.filter(a => a.status === filterStatus.value)
+  }
+  return filtered
+})
 
-const deleteArticle = (id) => {
+const handleDeleteArticle = (id) => {
   if (confirm('Apakah Anda yakin ingin menghapus berita ini?')) {
-    articles.value = articles.value.filter(a => a._id !== id)
+    removeArticle(id)
   }
 }
 </script>

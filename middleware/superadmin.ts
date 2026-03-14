@@ -1,10 +1,8 @@
 export default defineNuxtRouteMiddleware((to, from) => {
-  if (to.path.startsWith('/admin/super')) {
-    const token = useCookie('admin-token').value
-    const role = useCookie('admin-role').value
+  const adminToken = useCookie('admin-token')
+  const adminRole = useCookie('admin-role')
 
-    if (!token || role !== 'superadmin') {
-      return navigateTo('/admin/login')
-    }
+  if (!adminToken.value || adminRole.value !== 'superadmin') {
+    return navigateTo('/member/login')
   }
 })

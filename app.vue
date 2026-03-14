@@ -26,3 +26,23 @@ useHead({
   ]
 })
 </script>
+
+<style>
+/* ===== PAGE TRANSITION ===== */
+.liquid-page-enter-active {
+  transition: all 0.6s ease-out;
+}
+.liquid-page-leave-active {
+  transition: all 0.4s ease-in;
+}
+.liquid-page-enter-from {
+  opacity: 0;
+  transform: translateY(30px) scale(0.98);
+  filter: blur(6px);
+}
+.liquid-page-leave-to {
+  opacity: 0;
+  transform: translateY(-30px) scale(1.02);
+  filter: blur(6px);
+}
+</style>

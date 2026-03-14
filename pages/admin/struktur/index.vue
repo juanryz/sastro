@@ -168,27 +168,10 @@ definePageMeta({
   middleware: 'admin'
 })
 
+const { structure, updateStructure } = useAppData()
+
 const showForm = ref(false)
 const isSaving = ref(false)
-const structure = ref({
-  ketua: {
-    name: 'Budi Santoso',
-    title: 'Ketua',
-    email: 'ketua@sastrojendro.id'
-  },
-  wakil: [
-    {
-      name: 'Siti Nurhaliza',
-      title: 'Wakil Ketua I',
-      email: 'wakil1@sastrojendro.id'
-    },
-    {
-      name: 'Ahmad Wijaya',
-      title: 'Wakil Ketua II',
-      email: 'wakil2@sastrojendro.id'
-    }
-  ]
-})
 
 const addWakil = () => {
   structure.value.wakil.push({
@@ -205,10 +188,6 @@ const removeWakil = (index) => {
 const saveStructure = async () => {
   isSaving.value = true
   try {
-    // const response = await $fetch('/api/organization-structure', {
-    //   method: 'PUT',
-    //   body: structure.value
-    // })
     alert('Struktur organisasi berhasil diperbarui!')
     showForm.value = false
   } catch (e) {
