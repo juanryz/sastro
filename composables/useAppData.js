@@ -68,11 +68,11 @@ const _articles = ref([
 ])
 
 const _members = ref([
-  { id: 1, fullName: 'Budi Santoso', city: 'Yogyakarta', memberId: 'SJ-0001', email: 'budi@sastrojendro.id', phone: '+62 812 3456 7890', position: 'Ketua', status: 'verified', joinedAt: new Date('2024-06-01') },
-  { id: 2, fullName: 'Siti Nurhaliza', city: 'Surakarta', memberId: 'SJ-0002', email: 'siti@sastrojendro.id', phone: '+62 812 3456 7891', position: 'Wakil Ketua I', status: 'verified', joinedAt: new Date('2024-06-01') },
-  { id: 3, fullName: 'Ahmad Wijaya', city: 'Semarang', memberId: 'SJ-0003', email: 'ahmad@sastrojendro.id', phone: '+62 812 3456 7892', position: 'Wakil Ketua II', status: 'verified', joinedAt: new Date('2024-07-15') },
-  { id: 4, fullName: 'Dewi Sekartaji', city: 'Kediri', memberId: 'SJ-0004', email: 'dewi@sastrojendro.id', phone: '+62 813 5678 1234', position: 'Anggota', status: 'verified', joinedAt: new Date('2024-08-20') },
-  { id: 5, fullName: 'Suryo Kencana', city: 'Surakarta', memberId: 'SJ-0005', email: 'suryo@sastrojendro.id', phone: '+62 856 7890 1234', position: 'Anggota', status: 'verified', joinedAt: new Date('2025-01-10') },
+  { id: 1, fullName: 'Budi Santoso', city: 'Yogyakarta', memberId: 'SJ-0001', email: 'budi@sastrojendro.id', phone: '+62 812 3456 7890', position: 'Ketua', status: 'verified', joinedAt: new Date('2024-06-01'), password: 'budi123', profilePhoto: '', experience: 'Pendiri dan ketua organisasi dengan 20+ tahun pengalaman di seni tradisional Jawa.', interests: ['Wayang Kulit', 'Gamelan', 'Filosofi Jawa'] },
+  { id: 2, fullName: 'Siti Nurhaliza', city: 'Surakarta', memberId: 'SJ-0002', email: 'siti@sastrojendro.id', phone: '+62 812 3456 7891', position: 'Wakil Ketua I', status: 'verified', joinedAt: new Date('2024-06-01'), password: 'siti123', profilePhoto: '', experience: 'Ahli tari tradisional Jawa dan instruktur bersertifikat.', interests: ['Tari Serimpi', 'Koreografi'] },
+  { id: 3, fullName: 'Ahmad Wijaya', city: 'Semarang', memberId: 'SJ-0003', email: 'ahmad@sastrojendro.id', phone: '+62 812 3456 7892', position: 'Wakil Ketua II', status: 'verified', joinedAt: new Date('2024-07-15'), password: 'ahmad123', profilePhoto: '', experience: 'Spesialis pengelolaan keuangan dan operasional organisasi sosial.', interests: ['Manajemen', 'Koperasi'] },
+  { id: 4, fullName: 'Dewi Sekartaji', city: 'Kediri', memberId: 'SJ-0004', email: 'dewi@sastrojendro.id', phone: '+62 813 5678 1234', position: 'Anggota', status: 'verified', joinedAt: new Date('2024-08-20'), password: 'dewi123', profilePhoto: '', experience: '', interests: ['Batik', 'Seni Rupa'] },
+  { id: 5, fullName: 'Suryo Kencana', city: 'Surakarta', memberId: 'SJ-0005', email: 'suryo@sastrojendro.id', phone: '+62 856 7890 1234', position: 'Anggota', status: 'verified', joinedAt: new Date('2025-01-10'), password: 'suryo123', profilePhoto: '', experience: '', interests: [] },
 ])
 
 const _admins = ref([
@@ -148,7 +148,9 @@ export const useAppData = () => {
   const verifiedMembers = computed(() => _members.value.filter(m => m.status === 'verified'))
 
   const addMember = (member) => {
-    _members.value.push({ id: Date.now(), status: 'pending', joinedAt: new Date(), position: 'Anggota', ...member })
+    const nextId = _members.value.length + 1
+    const memberId = `SJ-${String(nextId).padStart(4, '0')}`
+    _members.value.push({ id: Date.now(), memberId, status: 'pending', joinedAt: new Date(), position: 'Anggota', profilePhoto: '', experience: '', interests: [], ...member })
   }
   const updateMember = (id, data) => {
     const idx = _members.value.findIndex(m => m.id === id)
@@ -156,6 +158,39 @@ export const useAppData = () => {
   }
   const deleteMember = (id) => {
     _members.value = _members.value.filter(m => m.id !== id)
+  }
+
+  // Register a new member (from /register page)
+  const registerMember = ({ fullName, email, password, city }) => {
+    const existing = _members.value.find(m => m.email === email)
+    if (existing) return { success: false, error: 'Email sudah terdaftar.' }
+    const nextId = _members.value.length + 1
+    const memberId = `SJ-${String(nextId).padStart(4, '0')}`
+    const newMember = {
+      id: Date.now(), memberId, fullName, email, password,
+      phone: '', city: city || '', position: 'Anggota', status: 'pending',
+      joinedAt: new Date(), profilePhoto: '', experience: '', interests: []
+    }
+    _members.value.push(newMember)
+    return { success: true, member: newMember }
+  }
+
+  // Get member by email (for login & profile)
+  const getMemberByEmail = (email) => _members.value.find(m => m.email === email) || null
+
+  // Update member password
+  const updateMemberPassword = (memberId, oldPassword, newPassword) => {
+    const member = _members.value.find(m => m.id === memberId)
+    if (!member) return { success: false, error: 'Member tidak ditemukan.' }
+    if (member.password && member.password !== oldPassword) return { success: false, error: 'Kata sandi lama salah.' }
+    member.password = newPassword
+    return { success: true }
+  }
+
+  // Update member profile photo (base64 data URL)
+  const updateMemberPhoto = (memberId, photoUrl) => {
+    const member = _members.value.find(m => m.id === memberId)
+    if (member) member.profilePhoto = photoUrl
   }
 
   // ========== ADMINS ==========
@@ -225,6 +260,7 @@ export const useAppData = () => {
     // Members
     members, verifiedMembers,
     addMember, updateMember, deleteMember,
+    registerMember, getMemberByEmail, updateMemberPassword, updateMemberPhoto,
     // Admins
     admins,
     addAdmin, updateAdminRole, toggleAdminStatus, deleteAdmin,

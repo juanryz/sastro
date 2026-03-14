@@ -64,13 +64,15 @@ import { useReveal } from '~/composables/useReveal'
 
 useReveal()
 
+const { getMemberByEmail } = useAppData()
+
 const credentials = ref({ email: '', password: '' })
 const isLoading = ref(false)
 const error = ref('')
 const showPassword = ref(false)
 
-// Mock user database — server akan menentukan role berdasarkan akun
-const mockUsers = {
+// Admin accounts (not part of member database)
+const adminAccounts = {
   'admin@sastrojendro.id': { role: 'admin', password: 'admin123' },
   'super@sastrojendro.id': { role: 'superadmin', password: 'super123' },
 }
@@ -87,11 +89,11 @@ const login = async () => {
   
   try {
     const emailInput = credentials.value.email.trim().toLowerCase()
-    const mockUser = mockUsers[emailInput]
+    const adminUser = adminAccounts[emailInput]
 
-    if (mockUser) {
+    if (adminUser) {
       // Admin / Super Admin login
-      if (credentials.value.password !== mockUser.password) {
+      if (credentials.value.password !== adminUser.password) {
         error.value = 'Kata sandi salah.'
         isLoading.value = false
         return
@@ -99,13 +101,29 @@ const login = async () => {
       const adminToken = useCookie('admin-token')
       const adminRole = useCookie('admin-role')
       adminToken.value = 'mock-token'
-      adminRole.value = mockUser.role
-      navigateTo(mockUser.role === 'superadmin' ? '/admin/super' : '/admin')
+      adminRole.value = adminUser.role
+      navigateTo(adminUser.role === 'superadmin' ? '/admin/super' : '/admin')
     } else {
-      // Member login (email apapun yang bukan admin)
-      const token = useCookie('member-token')
-      token.value = 'dummy-token'
-      navigateTo('/member/profile')
+      // Member login — validate against centralized database
+      const member = getMemberByEmail(emailInput)
+      if (member) {
+        // Known member — check password
+        if (member.password && credentials.value.password !== member.password) {
+          error.value = 'Kata sandi salah.'
+          isLoading.value = false
+          return
+        }
+        const token = useCookie('member-token')
+        const emailCookie = useCookie('member-email')
+        token.value = 'session-' + member.id
+        emailCookie.value = member.email
+        navigateTo('/member/profile')
+      } else {
+        // Unknown email — not registered
+        error.value = 'Email belum terdaftar. Silakan daftar terlebih dahulu.'
+        isLoading.value = false
+        return
+      }
     }
   } catch {
     error.value = 'Gagal masuk. Silakan coba lagi.'

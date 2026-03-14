@@ -82,6 +82,8 @@ import { useReveal } from '~/composables/useReveal'
 
 useReveal()
 
+const { registerMember } = useAppData()
+
 const form = ref({ fullName: '', email: '', password: '', confirmPassword: '', agreeTerms: false })
 const isSubmitting = ref(false)
 const error = ref('')
@@ -90,23 +92,45 @@ const showPassword = ref(false)
 const showConfirmPassword = ref(false)
 
 const registerWithGoogle = () => window.location.href = '/api/auth/google'
+
 const submitRegistration = () => { 
-  error.value=''
-  successMessage.value=''
-  if(!form.value.agreeTerms){
-    error.value='Harap setujui syarat & ketentuan.'
+  error.value = ''
+  successMessage.value = ''
+
+  if (!form.value.agreeTerms) {
+    error.value = 'Harap setujui syarat & ketentuan.'
     return
   }
-  if(form.value.password!==form.value.confirmPassword){
-    error.value='Konfirmasi kata sandi tidak cocok.'
+  if (form.value.password !== form.value.confirmPassword) {
+    error.value = 'Konfirmasi kata sandi tidak cocok.'
     return
   }
-  isSubmitting.value=true
-  setTimeout(()=>{
-    successMessage.value='Pendaftaran Berhasil! Mengalihkan ke halaman masuk...'
+  if (form.value.password.length < 6) {
+    error.value = 'Kata sandi minimal 6 karakter.'
+    return
+  }
+
+  isSubmitting.value = true
+  
+  // Register member into the centralized database
+  const result = registerMember({
+    fullName: form.value.fullName,
+    email: form.value.email.trim().toLowerCase(),
+    password: form.value.password,
+  })
+
+  if (!result.success) {
+    error.value = result.error
+    isSubmitting.value = false
+    return
+  }
+
+  successMessage.value = `Pendaftaran Berhasil! ID Anda: ${result.member.memberId}. Mengalihkan ke halaman masuk...`
+  
+  setTimeout(() => {
     navigateTo('/member/login')
-    isSubmitting.value=false
-  },700) 
+    isSubmitting.value = false
+  }, 1500)
 }
 
 useHead({

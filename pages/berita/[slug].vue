@@ -129,60 +129,40 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 
 const route = useRoute()
-const article = ref(null)
-const relatedArticles = ref([])
+const { publishedArticles, formatDate } = useAppData()
 
-const formatDate = (date) => {
-  return new Date(date).toLocaleDateString('id-ID', {
-    dateStyle: 'full'
-  })
-}
-
-onMounted(() => {
-  // Mock data for display purposes
-  setTimeout(() => {
-    article.value = {
-      _id: '1',
-      title: 'Peluncuran Pusat Pembelajaran Wayang Kulit',
-      excerpt: 'Kami dengan bangga mengumumkan pembukaan pusat pembelajaran wayang kulit, menjadi tempat belajar khusus bagi generasi muda yang tertarik dengan kesenian ini. Program ini mencakup dasar-dasar dalang, musik iringan, dan pembuatan wayang.',
-      slug: route.params.slug || 'peluncuran-pusat-pembelajaran',
-      category: 'Pendidikan',
-      createdAt: new Date('2026-03-10'),
-      content: `
-        <p>Dalam upaya pelestarian seni tradisional Jawa, Yayasan Sastro Jendro dengan bangga mengumumkan peresmian sarana edukasi terbaru kami: <strong>Pusat Pembelajaran Wayang Kulit Nusantara</strong>. Ini adalah manifestasi dari komitmen kami untuk memastikan generasi muda memiliki ruang aman dan suportif dalam mempelajari mahakarya leluhur tercinta kita.</p>
-        
-        <h3>Tujuan Spesifik Pusat Pembelajaran</h3>
-        <p>Program intensif yang disusun tidak sekadar belajar mendalang, melainkan kurikulum komprehensif yang dirancang untuk membidik pilar utama kesenian:</p>
-        <ul>
-          <li>Mempromosikan nilai moral pewayangan sebagai kerangka berpikir etis generasi muda.</li>
-          <li>Memberikan lokakarya teknis: memahat, mewarnai, hingga mengukir tatah wayang berbahan asli.</li>
-          <li>Pelatihan vokal (suluk) dan literasinya.</li>
-          <li>Mengintegrasikan seni wayang dengan instrumen gamelan klasik sebagai sebuah ekosistem.</li>
-        </ul>
-        
-        <p>Akses ke pusat pembelajaran ini akan dibuka untuk umum dengan serangkaian program beasiswa yang kami siapkan bagi para pemuda di lingkungan sekitar. Mari terus sengkuyung bersama melestarikan Sastra Jendra.</p>
+// Find article by slug from centralized database
+const article = computed(() => {
+  const slug = route.params.slug
+  const found = publishedArticles.value.find(a => a.slug === slug)
+  if (found) {
+    return {
+      ...found,
+      content: found.content || `
+        <p>${found.excerpt}</p>
+        <h3>Detail Lengkap</h3>
+        <p>Konten detail untuk artikel ini sedang dalam proses penulisan. Silakan periksa kembali dalam beberapa waktu untuk membaca artikel selengkapnya.</p>
+        <p>Yayasan Sastro Jendro berkomitmen untuk terus menyediakan konten berkualitas seputar pelestarian budaya Jawa dan kegiatan komunitas kami.</p>
       `
     }
+  }
+  return null
+})
 
-    useHead({
-      title: `${article.value.title} - Sastro Jendro Berita`
-    })
+// Related articles: same category, different slug
+const relatedArticles = computed(() => {
+  if (!article.value) return []
+  return publishedArticles.value
+    .filter(a => a.category === article.value.category && a.slug !== article.value.slug)
+    .slice(0, 2)
+})
 
-    relatedArticles.value = [
-      {
-        _id: '2',
-        title: 'Festival Seni Jawa Sastro Jendro 2026: Persiapan dan Rangkaian Acara',
-        slug: 'festival-seni-tahunan-2026'
-      },
-      {
-        _id: '5',
-        title: 'Mengenal Filosofi Sastra Jendra Hayuningrat dalam Konteks Kekinian',
-        slug: 'mengenal-filosofi-sastra-jendra'
-      }
-    ]
-  }, 300)
+onMounted(() => {
+  if (article.value) {
+    useHead({ title: `${article.value.title} - Sastro Jendro Berita` })
+  }
 })
 </script>
