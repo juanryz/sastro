@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-gradient-to-br from-indigo-50 via-white to-sky-50 text-slate-900">
+  <div class="text-slate-900">
     <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-10">
       <div class="grid gap-10 lg:grid-cols-2 items-center">
         <div>
