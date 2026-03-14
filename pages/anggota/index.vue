@@ -14,7 +14,7 @@
         v-model="searchQuery"
         type="text"
         placeholder="Cari anggota..."
-        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-600"
+        class="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-600"
       />
     </div>
 
@@ -23,7 +23,7 @@
       <div
         v-for="member in filteredMembers"
         :key="member._id"
-        class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition"
+        class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition"
       >
         <div class="bg-gradient-to-r from-amber-400 to-yellow-400 h-48 flex items-center justify-center">
           <span class="text-gray-600">Foto</span>

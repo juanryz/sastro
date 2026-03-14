@@ -10,7 +10,7 @@
           </div>
           <button
             @click="logout"
-            class="px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition"
+            class="px-6 py-2 bg-red-600 text-white rounded-xl hover:bg-red-700 transition"
           >
             Logout
           </button>
@@ -20,7 +20,7 @@
 
     <div class="flex">
       <!-- Super Admin Sidebar -->
-      <aside class="w-64 bg-gray-900 text-white min-h-screen p-6">
+      <aside class="w-64 bg-white/80 shadow-xl border border-white/60 text-white min-h-screen p-6">
         <div class="mb-8">
           <h2 class="text-lg font-bold">Super Admin</h2>
           <p class="text-purple-300 text-sm">Full System Access</p>
@@ -30,7 +30,7 @@
           <!-- Dashboard -->
           <NuxtLink
             to="/admin/super"
-            class="block px-4 py-3 rounded-lg hover:bg-gray-800 transition"
+            class="block px-4 py-3 rounded-xl hover:bg-slate-50 border-r border-slate-200 transition"
             :class="{ 'bg-purple-600': $route.path === '/admin/super' }"
           >
             📊 Dashboard
@@ -40,20 +40,20 @@
           <div>
             <button
               @click="expandMenu = expandMenu === 'users' ? '' : 'users'"
-              class="w-full text-left px-4 py-3 rounded-lg hover:bg-gray-800 transition font-semibold"
+              class="w-full text-left px-4 py-3 rounded-xl hover:bg-slate-50 border-r border-slate-200 transition font-semibold"
             >
               👥 User Management {{ expandMenu === 'users' ? '▼' : '▶' }}
             </button>
             <div v-if="expandMenu === 'users'" class="ml-4 space-y-2 mt-2">
               <NuxtLink
                 to="/admin/super/admin-users"
-                class="block px-4 py-2 rounded-lg hover:bg-gray-800 transition text-sm"
+                class="block px-4 py-2 rounded-xl hover:bg-slate-50 border-r border-slate-200 transition text-sm"
               >
                 Admin Users
               </NuxtLink>
               <NuxtLink
                 to="/admin/super/members"
-                class="block px-4 py-2 rounded-lg hover:bg-gray-800 transition text-sm"
+                class="block px-4 py-2 rounded-xl hover:bg-slate-50 border-r border-slate-200 transition text-sm"
               >
                 Member Verification
               </NuxtLink>
@@ -63,7 +63,7 @@
           <!-- Content Management -->
           <NuxtLink
             to="/admin/super/content"
-            class="block px-4 py-3 rounded-lg hover:bg-gray-800 transition"
+            class="block px-4 py-3 rounded-xl hover:bg-slate-50 border-r border-slate-200 transition"
             :class="{ 'bg-purple-600': $route.path.includes('/super/content') }"
           >
             📝 Content Management
@@ -72,7 +72,7 @@
           <!-- Organization -->
           <NuxtLink
             to="/admin/super/organization"
-            class="block px-4 py-3 rounded-lg hover:bg-gray-800 transition"
+            class="block px-4 py-3 rounded-xl hover:bg-slate-50 border-r border-slate-200 transition"
             :class="{ 'bg-purple-600': $route.path.includes('/super/organization') }"
           >
             🏢 Organization Settings
@@ -81,7 +81,7 @@
           <!-- Analytics -->
           <NuxtLink
             to="/admin/super/analytics"
-            class="block px-4 py-3 rounded-lg hover:bg-gray-800 transition"
+            class="block px-4 py-3 rounded-xl hover:bg-slate-50 border-r border-slate-200 transition"
             :class="{ 'bg-purple-600': $route.path.includes('/super/analytics') }"
           >
             📊 Analytics & Reports
@@ -90,7 +90,7 @@
           <!-- System Settings -->
           <NuxtLink
             to="/admin/super/settings"
-            class="block px-4 py-3 rounded-lg hover:bg-gray-800 transition"
+            class="block px-4 py-3 rounded-xl hover:bg-slate-50 border-r border-slate-200 transition"
             :class="{ 'bg-purple-600': $route.path.includes('/super/settings') }"
           >
             ⚙️ System Settings
@@ -108,19 +108,19 @@
 
         <!-- Quick Stats -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <div class="bg-white rounded-lg shadow p-6">
+          <div class="bg-white rounded-xl shadow p-6">
             <p class="text-gray-600 text-sm font-semibold mb-2">Total Admin</p>
             <p class="text-4xl font-bold text-purple-600">{{ stats.totalAdmins }}</p>
           </div>
-          <div class="bg-white rounded-lg shadow p-6">
+          <div class="bg-white rounded-xl shadow p-6">
             <p class="text-gray-600 text-sm font-semibold mb-2">Member Pending</p>
             <p class="text-4xl font-bold text-yellow-600">{{ stats.pendingMembers }}</p>
           </div>
-          <div class="bg-white rounded-lg shadow p-6">
+          <div class="bg-white rounded-xl shadow p-6">
             <p class="text-gray-600 text-sm font-semibold mb-2">Total Member</p>
             <p class="text-4xl font-bold text-green-600">{{ stats.totalMembers }}</p>
           </div>
-          <div class="bg-white rounded-lg shadow p-6">
+          <div class="bg-white rounded-xl shadow p-6">
             <p class="text-gray-600 text-sm font-semibold mb-2">Total Konten</p>
             <p class="text-4xl font-bold text-blue-600">{{ stats.totalContent }}</p>
           </div>
@@ -129,7 +129,7 @@
         <!-- Main Actions -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <!-- User Management Card -->
-          <div class="bg-white rounded-lg shadow p-6">
+          <div class="bg-white rounded-xl shadow p-6">
             <h3 class="text-xl font-bold text-gray-900 mb-4">👥 Manajemen User</h3>
             <p class="text-gray-700 mb-6">
               Kelola admin dan verifikasi member baru yang mendaftar di sistem
@@ -137,13 +137,13 @@
             <div class="space-y-2">
               <NuxtLink
                 to="/admin/super/admin-users"
-                class="block w-full px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition text-center font-semibold"
+                class="block w-full px-4 py-2 bg-purple-600 text-white rounded-xl hover:bg-purple-700 transition text-center font-semibold"
               >
                 Kelola Admin
               </NuxtLink>
               <NuxtLink
                 to="/admin/super/members"
-                class="block w-full px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 transition text-center font-semibold"
+                class="block w-full px-4 py-2 bg-yellow-600 text-white rounded-xl hover:bg-yellow-700 transition text-center font-semibold"
               >
                 Verifikasi Member
               </NuxtLink>
@@ -151,7 +151,7 @@
           </div>
 
           <!-- Content Management Card -->
-          <div class="bg-white rounded-lg shadow p-6">
+          <div class="bg-white rounded-xl shadow p-6">
             <h3 class="text-xl font-bold text-gray-900 mb-4">📝 Manajemen Konten</h3>
             <p class="text-gray-700 mb-6">
               Kelola semua artikel, berita, dan konten di website organisasi
@@ -159,13 +159,13 @@
             <div class="space-y-2">
               <NuxtLink
                 to="/admin/berita"
-                class="block w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition text-center font-semibold"
+                class="block w-full px-4 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition text-center font-semibold"
               >
                 Artikel & Berita
               </NuxtLink>
               <NuxtLink
                 to="/admin/super/content"
-                class="block w-full px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition text-center font-semibold"
+                class="block w-full px-4 py-2 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition text-center font-semibold"
               >
                 Gallery & Media
               </NuxtLink>
@@ -173,28 +173,28 @@
           </div>
 
           <!-- Organization Settings Card -->
-          <div class="bg-white rounded-lg shadow p-6">
+          <div class="bg-white rounded-xl shadow p-6">
             <h3 class="text-xl font-bold text-gray-900 mb-4">🏢 Pengaturan Organisasi</h3>
             <p class="text-gray-700 mb-6">
               Kelola struktur organisasi, departemen, dan informasi umum
             </p>
             <NuxtLink
               to="/admin/super/organization"
-              class="block w-full px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition text-center font-semibold"
+              class="block w-full px-4 py-2 bg-green-600 text-white rounded-xl hover:bg-green-700 transition text-center font-semibold"
             >
               Kelola Organisasi
             </NuxtLink>
           </div>
 
           <!-- System Settings Card -->
-          <div class="bg-white rounded-lg shadow p-6">
+          <div class="bg-white rounded-xl shadow p-6">
             <h3 class="text-xl font-bold text-gray-900 mb-4">⚙️ Pengaturan Sistem</h3>
             <p class="text-gray-700 mb-6">
               Konfigurasi email, keamanan, dan pengaturan teknis lainnya
             </p>
             <NuxtLink
               to="/admin/super/settings"
-              class="block w-full px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition text-center font-semibold"
+              class="block w-full px-4 py-2 bg-red-600 text-white rounded-xl hover:bg-red-700 transition text-center font-semibold"
             >
               Pengaturan Teknis
             </NuxtLink>
@@ -202,11 +202,11 @@
         </div>
 
         <!-- Recent Activity -->
-        <div class="mt-8 bg-white rounded-lg shadow p-6">
+        <div class="mt-8 bg-white rounded-xl shadow p-6">
           <h3 class="text-xl font-bold text-gray-900 mb-6">📋 Aktivitas Terbaru</h3>
 
           <div class="space-y-4">
-            <div v-for="activity in recentActivities" :key="activity.id" class="flex items-center gap-4 p-4 border border-gray-200 rounded-lg">
+            <div v-for="activity in recentActivities" :key="activity.id" class="flex items-center gap-4 p-4 border border-gray-200 rounded-xl">
               <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0">
                 <span class="text-lg">{{ activity.icon }}</span>
               </div>

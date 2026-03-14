@@ -14,11 +14,11 @@
         v-model="searchQuery"
         type="text"
         placeholder="Cari berita..."
-        class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-600"
+        class="flex-1 px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-600"
       />
       <select
         v-model="selectedCategory"
-        class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-600"
+        class="px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-600"
       >
         <option value="">Semua Kategori</option>
         <option value="seni">Seni</option>
@@ -33,7 +33,7 @@
       <div
         v-for="article in filteredArticles"
         :key="article._id"
-        class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition"
+        class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition"
       >
         <div class="bg-gradient-to-r from-amber-400 to-yellow-400 h-48 flex items-center justify-center">
           <span class="text-gray-600">Gambar Berita</span>
@@ -51,7 +51,7 @@
           <p class="text-gray-700 mb-4 line-clamp-3">{{ article.excerpt }}</p>
           <NuxtLink
             :to="`/berita/${article.slug}`"
-            class="inline-block px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition"
+            class="inline-block px-4 py-2 bg-amber-600 text-white rounded-xl hover:bg-amber-700 transition"
           >
             Baca Selengkapnya
           </NuxtLink>
@@ -71,7 +71,7 @@
         :key="page"
         @click="currentPage = page"
         :class="[
-          'px-4 py-2 rounded-lg transition',
+          'px-4 py-2 rounded-xl transition',
           currentPage === page
             ? 'bg-amber-600 text-white'
             : 'bg-gray-200 text-gray-800 hover:bg-gray-300'

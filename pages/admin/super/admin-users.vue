@@ -9,7 +9,7 @@
         </div>
         <button
           @click="showAddForm = true"
-          class="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition font-semibold"
+          class="px-6 py-2 bg-green-600 text-white rounded-xl hover:bg-green-700 transition font-semibold"
         >
           ➕ Tambah Admin
         </button>
@@ -18,23 +18,23 @@
 
     <div class="flex">
       <!-- Sidebar -->
-      <aside class="w-64 bg-gray-900 text-white min-h-screen p-6">
+      <aside class="w-64 bg-white/80 shadow-xl border border-white/60 text-white min-h-screen p-6">
         <nav class="space-y-4">
           <NuxtLink
             to="/admin/super"
-            class="block px-4 py-3 rounded-lg hover:bg-gray-800 transition"
+            class="block px-4 py-3 rounded-xl hover:bg-slate-50 border-r border-slate-200 transition"
           >
             📊 Dashboard
           </NuxtLink>
           <NuxtLink
             to="/admin/super/admin-users"
-            class="block px-4 py-3 rounded-lg bg-purple-600"
+            class="block px-4 py-3 rounded-xl bg-purple-600"
           >
             👥 Admin Users
           </NuxtLink>
           <NuxtLink
             to="/admin/super/members"
-            class="block px-4 py-3 rounded-lg hover:bg-gray-800 transition"
+            class="block px-4 py-3 rounded-xl hover:bg-slate-50 border-r border-slate-200 transition"
           >
             ✅ Member Verification
           </NuxtLink>
@@ -44,7 +44,7 @@
       <!-- Main Content -->
       <main class="flex-1 bg-gray-50 p-8">
         <!-- Add Admin Form -->
-        <div v-if="showAddForm" class="bg-white rounded-lg shadow-lg p-6 mb-8">
+        <div v-if="showAddForm" class="bg-white rounded-xl shadow-lg p-6 mb-8">
           <h2 class="text-2xl font-bold text-gray-900 mb-6">Tambah Admin Baru</h2>
 
           <form @submit.prevent="addAdmin" class="space-y-4">
@@ -54,25 +54,25 @@
                 type="text"
                 placeholder="Nama Admin"
                 required
-                class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+                class="px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-600"
               />
               <input
                 v-model="newAdmin.email"
                 type="email"
                 placeholder="Email Admin"
                 required
-                class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+                class="px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-600"
               />
               <input
                 v-model="newAdmin.password"
                 type="password"
                 placeholder="Password"
                 required
-                class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+                class="px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-600"
               />
               <select
                 v-model="newAdmin.role"
-                class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+                class="px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-600"
               >
                 <option value="admin">Admin Editor</option>
                 <option value="moderator">Moderator</option>
@@ -83,14 +83,14 @@
             <div class="flex gap-4">
               <button
                 type="submit"
-                class="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition font-semibold"
+                class="px-6 py-2 bg-green-600 text-white rounded-xl hover:bg-green-700 transition font-semibold"
               >
                 Buat Admin
               </button>
               <button
                 type="button"
                 @click="showAddForm = false"
-                class="px-6 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition font-semibold"
+                class="px-6 py-2 bg-gray-600 text-white rounded-xl hover:bg-gray-700 transition font-semibold"
               >
                 Batal
               </button>
@@ -99,7 +99,7 @@
         </div>
 
         <!-- Admin List -->
-        <div class="bg-white rounded-lg shadow overflow-hidden">
+        <div class="bg-white rounded-xl shadow overflow-hidden">
           <table class="w-full">
             <thead class="bg-gray-100 border-b border-gray-200">
               <tr>

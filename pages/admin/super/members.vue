@@ -10,23 +10,23 @@
 
     <div class="flex">
       <!-- Sidebar -->
-      <aside class="w-64 bg-gray-900 text-white min-h-screen p-6">
+      <aside class="w-64 bg-white/80 shadow-xl border border-white/60 text-white min-h-screen p-6">
         <nav class="space-y-4">
           <NuxtLink
             to="/admin/super"
-            class="block px-4 py-3 rounded-lg hover:bg-gray-800 transition"
+            class="block px-4 py-3 rounded-xl hover:bg-slate-50 border-r border-slate-200 transition"
           >
             📊 Dashboard
           </NuxtLink>
           <NuxtLink
             to="/admin/super/members"
-            class="block px-4 py-3 rounded-lg bg-purple-600"
+            class="block px-4 py-3 rounded-xl bg-purple-600"
           >
             ✅ Member Verification
           </NuxtLink>
           <NuxtLink
             to="/admin/super/admin-users"
-            class="block px-4 py-3 rounded-lg hover:bg-gray-800 transition"
+            class="block px-4 py-3 rounded-xl hover:bg-slate-50 border-r border-slate-200 transition"
           >
             👥 Admin Users
           </NuxtLink>
@@ -77,7 +77,7 @@
           <div
             v-for="member in pendingMembers"
             :key="member.id"
-            class="bg-white rounded-lg shadow-lg p-6 border-l-4 border-yellow-400"
+            class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-yellow-400"
           >
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
               <!-- Member Info -->
@@ -116,7 +116,7 @@
                   </div>
                 </div>
 
-                <div class="mt-4 p-4 bg-gray-50 rounded-lg">
+                <div class="mt-4 p-4 bg-gray-50 rounded-xl">
                   <p class="text-gray-600 text-sm font-semibold mb-1">Pengalaman & Keahlian</p>
                   <p class="text-gray-700">{{ member.experience || 'Tidak ada deskripsi' }}</p>
                 </div>
@@ -126,19 +126,19 @@
               <div class="space-y-3">
                 <button
                   @click="verifyMember(member.id)"
-                  class="w-full px-4 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition font-semibold"
+                  class="w-full px-4 py-3 bg-green-600 text-white rounded-xl hover:bg-green-700 transition font-semibold"
                 >
                   ✅ Verifikasi
                 </button>
                 <button
                   @click="rejectMember(member.id)"
-                  class="w-full px-4 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition font-semibold"
+                  class="w-full px-4 py-3 bg-red-600 text-white rounded-xl hover:bg-red-700 transition font-semibold"
                 >
                   ❌ Tolak
                 </button>
                 <button
                   @click="expandDetails = expandDetails === member.id ? null : member.id"
-                  class="w-full px-4 py-3 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition font-semibold"
+                  class="w-full px-4 py-3 bg-gray-600 text-white rounded-xl hover:bg-gray-700 transition font-semibold"
                 >
                   📋 Detail Lengkap
                 </button>
@@ -148,7 +148,7 @@
             <!-- Expanded Details -->
             <div
               v-if="expandDetails === member.id"
-              class="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200"
+              class="mt-6 p-4 bg-blue-50 rounded-xl border border-blue-200"
             >
               <p class="text-gray-600 text-sm"><strong>Alamat:</strong> {{ member.address }}</p>
               <p class="text-gray-600 text-sm"><strong>Username:</strong> {{ member.username }}</p>
@@ -166,7 +166,7 @@
           <div
             v-for="member in verifiedMembers"
             :key="member.id"
-            class="bg-white rounded-lg shadow p-6 border-l-4 border-green-400"
+            class="bg-white rounded-xl shadow p-6 border-l-4 border-green-400"
           >
             <div class="flex justify-between items-start">
               <div>
@@ -191,7 +191,7 @@
           <div
             v-for="member in rejectedMembers"
             :key="member.id"
-            class="bg-white rounded-lg shadow p-6 border-l-4 border-red-400"
+            class="bg-white rounded-xl shadow p-6 border-l-4 border-red-400"
           >
             <div class="flex justify-between items-start">
               <div>

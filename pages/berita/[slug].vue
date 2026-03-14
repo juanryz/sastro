@@ -19,7 +19,7 @@
       </div>
 
       <!-- Article Image -->
-      <div class="bg-gradient-to-r from-amber-400 to-yellow-400 h-96 rounded-lg mb-8 flex items-center justify-center">
+      <div class="bg-gradient-to-r from-amber-400 to-yellow-400 h-96 rounded-xl mb-8 flex items-center justify-center">
         <span class="text-gray-600">Gambar Artikel</span>
       </div>
 
@@ -32,13 +32,13 @@
       <div class="border-t border-b border-gray-200 py-8 mb-12">
         <p class="mb-4 text-gray-700">Bagikan artikel ini:</p>
         <div class="flex gap-4">
-          <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+          <button class="px-4 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700">
             Facebook
           </button>
-          <button class="px-4 py-2 bg-blue-400 text-white rounded-lg hover:bg-blue-500">
+          <button class="px-4 py-2 bg-blue-400 text-white rounded-xl hover:bg-blue-500">
             Twitter
           </button>
-          <button class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">
+          <button class="px-4 py-2 bg-green-600 text-white rounded-xl hover:bg-green-700">
             WhatsApp
           </button>
         </div>
@@ -51,7 +51,7 @@
           <div
             v-for="relatedArticle in relatedArticles"
             :key="relatedArticle._id"
-            class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition"
+            class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition"
           >
             <div class="bg-gray-200 h-40 flex items-center justify-center">
               <span class="text-gray-500">Gambar</span>

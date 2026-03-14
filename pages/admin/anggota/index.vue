@@ -6,7 +6,7 @@
         <h1 class="text-2xl font-bold text-gray-900">Manajemen Anggota</h1>
         <NuxtLink
           to="/admin/anggota/baru"
-          class="px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition"
+          class="px-4 py-2 bg-amber-600 text-white rounded-xl hover:bg-amber-700 transition"
         >
           ➕ Tambah Anggota
         </NuxtLink>
@@ -15,29 +15,29 @@
 
     <div class="flex">
       <!-- Sidebar -->
-      <aside class="w-64 bg-gray-800 text-white min-h-screen p-6">
+      <aside class="w-64 bg-slate-50 border-r border-slate-200 text-white min-h-screen p-6">
         <nav class="space-y-4">
           <NuxtLink
             to="/admin"
-            class="block px-4 py-2 rounded-lg hover:bg-gray-700 transition"
+            class="block px-4 py-2 rounded-xl hover:bg-gray-700 transition"
           >
             📊 Dashboard
           </NuxtLink>
           <NuxtLink
             to="/admin/berita"
-            class="block px-4 py-2 rounded-lg hover:bg-gray-700 transition"
+            class="block px-4 py-2 rounded-xl hover:bg-gray-700 transition"
           >
             📝 Berita & Blog
           </NuxtLink>
           <NuxtLink
             to="/admin/struktur"
-            class="block px-4 py-2 rounded-lg hover:bg-gray-700 transition"
+            class="block px-4 py-2 rounded-xl hover:bg-gray-700 transition"
           >
             🏢 Struktur Organisasi
           </NuxtLink>
           <NuxtLink
             to="/admin/anggota"
-            class="block px-4 py-2 rounded-lg bg-amber-600"
+            class="block px-4 py-2 rounded-xl bg-amber-600"
           >
             👥 Anggota
           </NuxtLink>
@@ -47,17 +47,17 @@
       <!-- Main Content -->
       <main class="flex-1 bg-gray-50 p-8">
         <!-- Search -->
-        <div class="bg-white rounded-lg shadow p-6 mb-6">
+        <div class="bg-white rounded-xl shadow p-6 mb-6">
           <input
             v-model="searchQuery"
             type="text"
             placeholder="Cari anggota..."
-            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-600"
+            class="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-600"
           />
         </div>
 
         <!-- Members Table -->
-        <div class="bg-white rounded-lg shadow overflow-hidden">
+        <div class="bg-white rounded-xl shadow overflow-hidden">
           <table class="w-full">
             <thead class="bg-gray-100 border-b border-gray-200">
               <tr>
