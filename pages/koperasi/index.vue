@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-16">
     <div class="text-center mb-16">
       <h1 class="text-4xl font-bold text-slate-900">Koperasi Sastro Jendro</h1>
       <p class="mt-4 text-lg text-slate-600">Pemberdayaan ekonomi anggota melalui semangat gotong royong.</p>

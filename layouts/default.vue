@@ -1,22 +1,18 @@
 <template>
   <div class="min-h-screen bg-slate-50 text-slate-900 pb-28 relative overflow-x-hidden">
 
-    <!-- ==================== TOP LOGO HEADER (visible except on home) ==================== -->
-    <header v-if="route.path !== '/'" class="fixed top-0 left-0 right-0 z-40 bg-white/70 backdrop-blur-2xl border-b border-white/60 shadow-[0_4px_30px_-10px_rgba(0,0,0,0.05)]">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center gap-3 relative">
-        <NuxtLink to="/" class="flex items-center gap-3 group">
-          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-500 to-cyan-400 flex items-center justify-center text-xs font-black text-white shadow-md shadow-indigo-500/20 group-hover:shadow-lg transition">SJ</div>
-          <div>
-            <p class="text-sm font-extrabold text-slate-800 tracking-wide">Sastro Jendro</p>
-            <p class="text-[9px] font-bold text-slate-500 tracking-widest uppercase">Budaya · Kesenian</p>
-          </div>
-        </NuxtLink>
-      </div>
-    </header>
 
     <!-- ==================== DESKTOP DOCK ==================== -->
-    <header class="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 hidden md:block">
+    <header class="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 hidden md:block w-max max-w-full px-4">
       <div class="rounded-[1.8rem] backdrop-blur-2xl bg-white/70 shadow-[0_8px_40px_-8px_rgba(100,116,139,0.25)] border border-white/80 px-2 py-1.5 flex items-center gap-0.5">
+        
+        <!-- Logo on left -->
+        <NuxtLink to="/" class="flex items-center gap-2 group ml-2 mr-3 pointer-events-auto">
+          <div class="w-8 h-8 rounded-[0.8rem] bg-gradient-to-tr from-indigo-500 to-cyan-400 flex items-center justify-center text-[10px] font-black text-white shadow-md shadow-indigo-500/20 group-hover:shadow-lg transition">SJ</div>
+          <p class="text-xs font-extrabold text-slate-800 tracking-wide hidden lg:block">Sastro Jendro</p>
+        </NuxtLink>
+        <div class="w-px h-5 bg-slate-200 mr-1.5 hidden lg:block"></div>
+
         <NuxtLink v-for="item in navItems" :key="item.to" :to="item.to"
           :class="isActive(item.to) ? 'bg-indigo-50 text-indigo-600' : 'text-slate-500 hover:text-slate-800 hover:bg-slate-100/80'"
           class="group relative px-4 py-2.5 rounded-[1.2rem] text-[13px] font-semibold tracking-wide transition-all duration-300">
@@ -56,10 +52,15 @@
           </div>
           <!-- Expand Arrow + Auth -->
           <div class="flex items-center justify-between">
-            <button @click="mobileExpanded = true" class="flex items-center gap-2 text-slate-400 active:scale-95 transition-transform">
-              <svg class="w-5 h-5 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" /></svg>
-              <span class="text-xs font-bold tracking-wide">Semua menu</span>
-            </button>
+            <div class="flex items-center gap-3">
+              <NuxtLink to="/" class="w-8 h-8 flex-shrink-0 rounded-[0.8rem] bg-gradient-to-tr from-indigo-500 to-cyan-400 flex items-center justify-center text-[10px] font-black text-white shadow-md shadow-indigo-500/20 active:scale-95 transition-transform">SJ</NuxtLink>
+              <button @click="mobileExpanded = true" class="flex flex-col items-start text-slate-500 active:scale-95 transition-transform">
+                <div class="flex items-center gap-1.5">
+                  <svg class="w-4 h-4 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 15l7-7 7 7" /></svg>
+                  <span class="text-[10px] font-bold tracking-wide uppercase">Menu</span>
+                </div>
+              </button>
+            </div>
             <div class="flex items-center gap-2">
               <NuxtLink to="/member/login" class="rounded-xl border border-slate-200 bg-white/80 px-3.5 py-2 text-xs font-bold text-slate-600 active:scale-95 transition-transform">Masuk</NuxtLink>
               <NuxtLink to="/register" class="rounded-xl bg-gradient-to-r from-indigo-500 to-cyan-400 px-3.5 py-2 text-xs font-bold text-white shadow-md shadow-indigo-500/25 active:scale-95 transition-transform">Daftar</NuxtLink>
