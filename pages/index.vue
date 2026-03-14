@@ -3,7 +3,9 @@
     <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-10">
       <!-- Logo in Hero -->
       <div class="flex items-center gap-4 mb-10">
-        <div class="w-14 h-14 rounded-[1.2rem] bg-gradient-to-tr from-indigo-500 to-cyan-400 flex items-center justify-center text-lg font-black text-white shadow-lg shadow-indigo-500/30">SJ</div>
+        <div class="w-16 h-16 rounded-full bg-white flex items-center justify-center p-1 shadow-md border border-slate-100 backdrop-blur-md">
+          <img src="/logo.png" alt="Sastro Jendro" class="w-full h-full object-contain drop-shadow-sm" />
+        </div>
         <div>
           <p class="text-lg font-extrabold tracking-wide text-slate-800">Sastro Jendro</p>
           <p class="text-[11px] font-bold text-slate-500 tracking-widest uppercase">Budaya · Kesenian · Komunitas</p>

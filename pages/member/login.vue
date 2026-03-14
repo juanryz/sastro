@@ -6,7 +6,9 @@
 
     <div class="relative z-10 w-full max-w-md rounded-[2.5rem] bg-white/40 backdrop-blur-2xl border border-white/60 p-8 shadow-[0_8px_32px_0_rgba(31,38,135,0.05)]">
       <div class="text-center mb-6">
-        <div class="mx-auto w-16 h-16 rounded-[1.5rem] bg-gradient-to-br from-indigo-500 to-cyan-400 shadow-lg shadow-indigo-500/30 flex items-center justify-center text-white text-2xl font-black tracking-tighter">SJ</div>
+        <div class="mx-auto w-20 h-20 rounded-full bg-white flex items-center justify-center p-2 shadow-lg shadow-indigo-500/10 border border-slate-100">
+          <img src="/logo.png" alt="Sastro Jendro" class="w-full h-full object-contain drop-shadow-sm" />
+        </div>
         <h1 class="mt-5 text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-600">Sign In</h1>
         <p class="text-slate-600 font-medium mt-1">Selamat datang kembali, Member!</p>
       </div>

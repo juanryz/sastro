@@ -8,7 +8,9 @@
         
         <!-- Logo on left -->
         <NuxtLink to="/" class="flex items-center gap-2 group ml-2 mr-3 pointer-events-auto">
-          <div class="w-8 h-8 rounded-[0.8rem] bg-gradient-to-tr from-indigo-500 to-cyan-400 flex items-center justify-center text-[10px] font-black text-white shadow-md shadow-indigo-500/20 group-hover:shadow-lg transition">SJ</div>
+          <div class="w-9 h-9 rounded-full bg-white flex items-center justify-center p-0.5 shadow-sm border border-slate-100 group-hover:shadow-md group-hover:border-indigo-100 transition">
+            <img src="/logo.png" alt="Sastro Jendro" class="w-full h-full object-contain drop-shadow-sm" />
+          </div>
           <p class="text-xs font-extrabold text-slate-800 tracking-wide hidden lg:block">Sastro Jendro</p>
         </NuxtLink>
         <div class="w-px h-5 bg-slate-200 mr-1.5 hidden lg:block"></div>
@@ -53,7 +55,9 @@
           <!-- Expand Arrow + Auth -->
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-3">
-              <NuxtLink to="/" class="w-8 h-8 flex-shrink-0 rounded-[0.8rem] bg-gradient-to-tr from-indigo-500 to-cyan-400 flex items-center justify-center text-[10px] font-black text-white shadow-md shadow-indigo-500/20 active:scale-95 transition-transform">SJ</NuxtLink>
+              <NuxtLink to="/" class="w-9 h-9 flex-shrink-0 rounded-full bg-white flex items-center justify-center p-0.5 shadow-sm border border-slate-100 active:scale-95 transition-transform">
+                <img src="/logo.png" alt="Sastro Jendro" class="w-full h-full object-contain drop-shadow-sm" />
+              </NuxtLink>
               <button @click="mobileExpanded = true" class="flex flex-col items-start text-slate-500 active:scale-95 transition-transform">
                 <div class="flex items-center gap-1.5">
                   <svg class="w-4 h-4 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 15l7-7 7 7" /></svg>
@@ -73,7 +77,9 @@
           <!-- Header -->
           <div class="flex items-center justify-between mb-6 pt-1">
             <div class="flex items-center gap-3">
-              <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-indigo-500 to-cyan-400 flex items-center justify-center text-sm font-black text-white shadow-lg shadow-indigo-500/25">SJ</div>
+              <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center p-1 shadow-sm border border-slate-100">
+                <img src="/logo.png" alt="Sastro Jendro" class="w-full h-full object-contain drop-shadow-sm" />
+              </div>
               <div>
                 <p class="text-sm font-extrabold text-slate-800">Sastro Jendro</p>
                 <p class="text-[10px] font-bold text-slate-400 tracking-widest uppercase">Menu Navigasi</p>
