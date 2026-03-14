@@ -1,7 +1,7 @@
 <template>
   <div class="w-full max-w-md mx-auto">
     <div
-      class="relative h-64 bg-blue-600 rounded-none shadow-sm overflow-hidden card-3d"
+      class="relative h-64 bg-gradient-to-br from-amber-500 via-amber-400 to-yellow-300 rounded-2xl shadow-2xl overflow-hidden card-3d"
     >
       <!-- Background Pattern -->
       <div class="absolute inset-0 opacity-10">
@@ -12,7 +12,7 @@
       <div class="absolute top-0 left-0 right-0 p-6 border-b-2 border-amber-600 border-opacity-30">
         <div class="flex justify-between items-start">
           <!-- Logo -->
-          <div class="w-12 h-12 bg-white bg-opacity-20 rounded-sm flex items-center justify-center">
+          <div class="w-12 h-12 bg-white bg-opacity-20 rounded-lg flex items-center justify-center">
             <span class="text-white font-bold text-lg">SJ</span>
           </div>
           <!-- Member Since -->
@@ -47,7 +47,7 @@
       </div>
 
       <!-- Bottom Section -->
-      <div class="absolute bottom-0 left-0 right-0 p-6 bg-blue-600 from-40% to-transparent">
+      <div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black from-40% to-transparent">
         <!-- Interests -->
         <div class="mb-2">
           <p class="text-xs text-white text-opacity-80 mb-1">MINAT</p>
@@ -58,7 +58,7 @@
 
         <!-- QR Code placeholder -->
         <div class="absolute bottom-4 right-4">
-          <div class="w-16 h-16 bg-white rounded-sm p-1 shadow-lg flex items-center justify-center">
+          <div class="w-16 h-16 bg-white rounded-lg p-1 shadow-lg flex items-center justify-center">
             <div class="w-full h-full bg-gray-100 rounded flex items-center justify-center">
               <span class="text-xs text-gray-500">QR</span>
             </div>
@@ -67,19 +67,19 @@
       </div>
 
       <!-- Hologram Effect -->
-      <div class="absolute inset-0 bg-blue-600 opacity-25 card-shine"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-25 card-shine"></div>
     </div>
 
     <!-- Card Actions -->
     <div class="mt-6 space-y-2">
       <button
-        class="w-full px-4 py-2 bg-amber-600 text-white rounded-sm hover:bg-amber-700 transition font-semibold"
+        class="w-full px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition font-semibold"
         @click="downloadCard"
       >
         📥 Download Kartu (PDF)
       </button>
       <button
-        class="w-full px-4 py-2 bg-gray-700 text-white rounded-sm hover:bg-gray-800 transition font-semibold"
+        class="w-full px-4 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-800 transition font-semibold"
         @click="shareCard"
       >
         🔗 Bagikan Kartu
@@ -87,7 +87,7 @@
     </div>
 
     <!-- Card Info -->
-    <div class="mt-6 p-4 bg-blue-50 rounded-sm border border-blue-200">
+    <div class="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
       <p class="text-sm text-gray-700">
         <strong>📌 Informasi:</strong> Kartu anggota digital ini dapat digunakan untuk akses ke berbagai acara
         eksklusif dan fasilitas member. Simpan kartu Anda dengan baik.
