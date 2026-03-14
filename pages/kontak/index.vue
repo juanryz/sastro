@@ -64,7 +64,7 @@
 
       <!-- Contact Form -->
       <div class="lg:col-span-2">
-        <form @submit.prevent="submitForm" class="bg-white rounded-sm shadow-lg p-8">
+        <form @submit.prevent="submitForm" class="bg-white rounded-lg shadow-lg p-8">
           <div class="mb-6">
             <label for="name" class="block text-gray-700 font-semibold mb-2">Nama</label>
             <input
@@ -72,7 +72,7 @@
               v-model="form.name"
               type="text"
               required
-              class="w-full px-4 py-2 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-amber-600"
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-600"
               placeholder="Nama Anda"
             />
           </div>
@@ -84,7 +84,7 @@
               v-model="form.email"
               type="email"
               required
-              class="w-full px-4 py-2 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-amber-600"
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-600"
               placeholder="Email Anda"
             />
           </div>
@@ -95,7 +95,7 @@
               id="phone"
               v-model="form.phone"
               type="tel"
-              class="w-full px-4 py-2 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-amber-600"
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-600"
               placeholder="Nomor telepon Anda"
             />
           </div>
@@ -106,7 +106,7 @@
               id="subject"
               v-model="form.subject"
               required
-              class="w-full px-4 py-2 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-amber-600"
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-600"
             >
               <option value="">Pilih Subjek</option>
               <option value="informasi">Permintaan Informasi</option>
@@ -125,7 +125,7 @@
               v-model="form.message"
               required
               rows="6"
-              class="w-full px-4 py-2 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-amber-600"
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-600"
               placeholder="Pesan Anda..."
             />
           </div>
@@ -134,7 +134,7 @@
           <div
             v-if="submitStatus.message"
             :class="[
-              'mb-6 p-4 rounded-sm',
+              'mb-6 p-4 rounded-lg',
               submitStatus.type === 'success'
                 ? 'bg-green-100 text-green-800'
                 : 'bg-red-100 text-red-800'
@@ -146,7 +146,7 @@
           <button
             type="submit"
             :disabled="isSubmitting"
-            class="w-full px-6 py-3 bg-amber-600 text-white rounded-sm hover:bg-amber-700 transition disabled:bg-gray-400 disabled:cursor-not-allowed"
+            class="w-full px-6 py-3 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition disabled:bg-gray-400 disabled:cursor-not-allowed"
           >
             {{ isSubmitting ? 'Mengirim...' : 'Kirim Pesan' }}
           </button>
@@ -155,7 +155,7 @@
     </div>
 
     <!-- Map Section -->
-    <div class="bg-white rounded-sm shadow-lg overflow-hidden">
+    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
       <div class="bg-gray-200 h-96 flex items-center justify-center">
         <span class="text-gray-500">Peta lokasi akan ditampilkan di sini</span>
       </div>
