@@ -7,8 +7,8 @@
       <div class="rounded-[1.8rem] backdrop-blur-2xl bg-white/70 shadow-[0_8px_40px_-8px_rgba(100,116,139,0.25)] border border-white/80 px-2 py-1.5 flex items-center gap-0.5">
         
         <!-- Logo on left -->
-        <NuxtLink to="/" class="flex items-center group ml-3 mr-4 pointer-events-auto">
-          <div class="h-10 w-auto flex items-center justify-center transition group-hover:scale-105">
+        <NuxtLink to="/" class="flex items-center group ml-3 mr-4 pointer-events-auto pt-1 pb-1">
+          <div class="h-14 w-auto flex items-center justify-center transition group-hover:scale-105">
             <img src="/logo.png" alt="Sastra Jendra Hayuningrat" class="h-full w-auto object-contain drop-shadow-sm" />
           </div>
         </NuxtLink>
@@ -27,85 +27,112 @@
     </header>
 
     <!-- ==================== MOBILE BOTTOM SHEET ==================== -->
-    <div class="fixed bottom-0 left-0 right-0 z-50 md:hidden" ref="mobileSheet">
+    <div
+      class="fixed inset-0 z-50 md:hidden pointer-events-none"
+      :class="{'pointer-events-auto': mobileExpanded || isDragging}"
+    >
+      <!-- Backdrop -->
+      <div 
+        class="absolute inset-0 bg-slate-900/40 backdrop-blur-[2px] transition-opacity duration-500"
+        :class="mobileExpanded ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'"
+        @click="closeMenu"
+      ></div>
+
+      <!-- Sheet Container -->
       <div
-        class="bg-white/70 backdrop-blur-2xl border-t border-white/80 shadow-[0_-8px_40px_-8px_rgba(100,116,139,0.2)] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
-        :class="mobileExpanded ? 'rounded-t-[0] h-[100dvh]' : 'rounded-t-[1.8rem]'"
-        :style="{ overflow: mobileExpanded ? 'auto' : 'hidden' }"
-        @touchstart.passive="onSheetTouchStart"
-        @touchmove.passive="onSheetTouchMove"
-        @touchend.passive="onSheetTouchEnd"
+        class="absolute left-0 right-0 bottom-0 bg-white/95 backdrop-blur-3xl border-t border-white/80 shadow-[0_-8px_40px_-8px_rgba(100,116,139,0.2)] flex flex-col pointer-events-auto rounded-t-[1.8rem] will-change-transform"
+        :class="[!isDragging ? 'transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]' : '']"
+        :style="{
+          height: '100dvh',
+          transform: `translateY(${sheetTranslateY}px)`
+        }"
       >
-        <!-- Pull Handle -->
-        <div class="flex justify-center pt-3 pb-2">
-          <div class="w-10 h-1 rounded-full bg-slate-300/80 transition-all" :class="mobileExpanded ? 'w-14 bg-slate-400' : ''"></div>
+        <!-- Pull Handle Area -->
+        <div 
+          class="flex justify-center pt-3 pb-2 touch-none cursor-grab active:cursor-grabbing shrink-0"
+          @touchstart.passive="onDragStart"
+          @touchmove.passive="onDragMove"
+          @touchend.passive="onDragEnd"
+        >
+          <div class="w-12 h-1.5 rounded-full bg-slate-300/80 transition-all duration-300" :class="mobileExpanded ? 'w-16 bg-slate-400' : ''"></div>
         </div>
 
-        <!-- Preview Mode (2 items + arrow) -->
-        <div v-if="!mobileExpanded" class="px-4 pb-4">
-          <div class="flex items-center gap-2 mb-3">
-            <NuxtLink v-for="item in previewItems" :key="item.to" :to="item.to"
-              :class="isActive(item.to) ? 'bg-indigo-50 text-indigo-600 border-indigo-200' : 'bg-slate-50 text-slate-600 border-slate-100 hover:bg-white'"
-              class="flex-1 flex items-center justify-center gap-2 px-3.5 py-3 rounded-2xl text-sm font-bold border transition-all active:scale-[0.97]">
-              <span class="w-4 h-4" v-html="item.svg"></span>
-              {{ item.label }}
-            </NuxtLink>
-          </div>
-          <!-- Expand Arrow + Auth -->
-          <div class="flex items-center justify-between">
-            <div class="flex items-center gap-3">
-              <NuxtLink to="/" class="h-10 w-auto flex-shrink-0 flex items-center justify-center active:scale-95 transition-transform">
-                <img src="/logo.png" alt="Sastra Jendra Hayuningrat" class="h-full w-auto object-contain drop-shadow-sm" />
+        <!-- Sheet Content Wrap -->
+        <div class="relative flex-1">
+          <!-- Collapsed "Preview" Content -->
+          <div
+            ref="previewRef"
+            class="absolute inset-x-0 top-0 px-4 pb-4 transition-all duration-300 pointer-events-auto"
+            :class="mobileExpanded ? 'opacity-0 -translate-y-4 pointer-events-none' : 'opacity-100 translate-y-0'"
+          >
+            <!-- Preview Items -->
+            <div class="flex items-center gap-2 mb-3">
+              <NuxtLink v-for="item in previewItems" :key="item.to" :to="item.to"
+                :class="isActive(item.to) ? 'bg-indigo-50 text-indigo-600 border-indigo-200' : 'bg-slate-50 text-slate-600 border-slate-100 hover:bg-white'"
+                class="flex-1 flex items-center justify-center gap-2 px-3.5 py-3 rounded-2xl text-sm font-bold border transition-all active:scale-[0.97]">
+                <span class="w-4 h-4" v-html="item.svg"></span>
+                {{ item.label }}
               </NuxtLink>
-              <button @click="mobileExpanded = true" class="flex flex-col items-start text-slate-500 active:scale-95 transition-transform">
-                <div class="flex items-center gap-1.5">
-                  <svg class="w-4 h-4 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 15l7-7 7 7" /></svg>
-                  <span class="text-[10px] font-bold tracking-wide uppercase">Menu</span>
+            </div>
+            <!-- Expand Arrow + Auth -->
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <NuxtLink to="/" class="h-12 w-auto flex-shrink-0 flex items-center justify-center active:scale-95 transition-transform">
+                  <img src="/logo.png" alt="Sastra Jendra Hayuningrat" class="h-full w-auto object-contain drop-shadow-sm" />
+                </NuxtLink>
+                <button @click="openMenu" class="flex flex-col items-start text-slate-500 active:scale-95 transition-transform">
+                  <div class="flex items-center gap-1.5">
+                    <svg class="w-4 h-4 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 15l7-7 7 7" /></svg>
+                    <span class="text-[10px] font-bold tracking-wide uppercase">Menu</span>
+                  </div>
+                </button>
+              </div>
+              <div class="flex items-center gap-2">
+                <NuxtLink to="/member/login" class="rounded-xl border border-slate-200 bg-white/80 px-3.5 py-2 text-xs font-bold text-slate-600 active:scale-95 transition-transform">Masuk</NuxtLink>
+                <NuxtLink to="/register" class="rounded-xl bg-gradient-to-r from-indigo-500 to-cyan-400 px-3.5 py-2 text-xs font-bold text-white shadow-md shadow-indigo-500/25 active:scale-95 transition-transform">Daftar</NuxtLink>
+              </div>
+            </div>
+          </div>
+
+          <!-- Expanded Full Menu -->
+          <div
+            class="absolute inset-x-0 bottom-0 top-0 flex flex-col px-5 pb-8 transition-all duration-300 overflow-y-auto"
+            :class="mobileExpanded ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-8 pointer-events-none'"
+          >
+            <!-- Header -->
+            <div class="flex items-center justify-between mb-6 pt-1">
+              <div class="flex items-center gap-3">
+                <div class="h-16 w-auto flex items-center justify-center">
+                  <img src="/logo.png" alt="Sastra Jendra Hayuningrat" class="h-full w-auto object-contain drop-shadow-sm" />
                 </div>
+              </div>
+              <button @click="closeMenu" class="w-10 h-10 rounded-2xl bg-slate-100 flex items-center justify-center text-slate-400 hover:text-slate-600 hover:bg-slate-200 transition-all active:scale-90">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12" /></svg>
               </button>
             </div>
-            <div class="flex items-center gap-2">
-              <NuxtLink to="/member/login" class="rounded-xl border border-slate-200 bg-white/80 px-3.5 py-2 text-xs font-bold text-slate-600 active:scale-95 transition-transform">Masuk</NuxtLink>
-              <NuxtLink to="/register" class="rounded-xl bg-gradient-to-r from-indigo-500 to-cyan-400 px-3.5 py-2 text-xs font-bold text-white shadow-md shadow-indigo-500/25 active:scale-95 transition-transform">Daftar</NuxtLink>
+
+            <!-- Menu Grid -->
+            <nav class="flex-1 flex flex-col gap-1.5">
+              <NuxtLink v-for="item in navItems" :key="item.to"
+                @click="closeMenu"
+                :to="item.to"
+                :class="isActive(item.to) ? 'bg-indigo-50 border-indigo-200 shadow-sm' : 'border-slate-100 hover:bg-slate-50 hover:border-slate-200'"
+                class="flex items-center gap-4 px-5 py-4 rounded-2xl font-semibold text-base transition-all duration-200 border active:scale-[0.98]">
+                <span class="w-5 h-5 shrink-0" :class="isActive(item.to) ? 'text-indigo-500' : 'text-slate-400'" v-html="item.svg"></span>
+                <div class="flex-1">
+                  <div :class="isActive(item.to) ? 'text-indigo-700' : 'text-slate-700'">{{ item.label }}</div>
+                  <div class="text-[11px] text-slate-400 font-medium mt-0.5">{{ item.desc }}</div>
+                </div>
+                <span v-if="isActive(item.to)" class="w-2 h-2 rounded-full bg-indigo-500 shadow-[0_0_6px_2px_rgba(99,102,241,0.4)]"></span>
+                <svg v-else class="w-4 h-4 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+              </NuxtLink>
+            </nav>
+
+            <!-- Bottom Auth -->
+            <div class="flex gap-3 mt-5 pt-4 border-t border-slate-100 mt-auto shrink-0 pb-4">
+              <NuxtLink @click="closeMenu" to="/member/login" class="flex-1 rounded-2xl border border-slate-200 bg-white py-4 text-center text-sm font-bold text-slate-600 hover:bg-slate-50 transition-all active:scale-[0.98]">Masuk</NuxtLink>
+              <NuxtLink @click="closeMenu" to="/register" class="flex-1 rounded-2xl bg-gradient-to-r from-indigo-500 to-cyan-400 py-4 text-center text-sm font-bold text-white shadow-lg shadow-indigo-500/25 hover:shadow-xl transition-all active:scale-[0.98]">Daftar</NuxtLink>
             </div>
-          </div>
-        </div>
-
-        <!-- Expanded Full Menu -->
-        <div v-if="mobileExpanded" class="px-5 pb-8 flex flex-col h-[calc(100dvh-3rem)]">
-          <!-- Header -->
-          <div class="flex items-center justify-between mb-6 pt-1">
-            <div class="flex items-center gap-3">
-              <div class="h-14 w-auto flex items-center justify-center">
-                <img src="/logo.png" alt="Sastra Jendra Hayuningrat" class="h-full w-auto object-contain drop-shadow-sm" />
-              </div>
-            </div>
-            <button @click="mobileExpanded = false" class="w-10 h-10 rounded-2xl bg-slate-100 flex items-center justify-center text-slate-400 hover:text-slate-600 hover:bg-slate-200 transition-all active:scale-90">
-              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12" /></svg>
-            </button>
-          </div>
-
-          <!-- Menu Grid -->
-          <nav class="flex-1 flex flex-col gap-1.5 overflow-y-auto">
-            <NuxtLink v-for="item in navItems" :key="item.to"
-              @click="mobileExpanded = false"
-              :to="item.to"
-              :class="isActive(item.to) ? 'bg-indigo-50 border-indigo-200 shadow-sm' : 'border-slate-100 hover:bg-slate-50 hover:border-slate-200'"
-              class="flex items-center gap-4 px-5 py-4 rounded-2xl font-semibold text-base transition-all duration-200 border active:scale-[0.98]">
-              <span class="w-5 h-5 shrink-0" :class="isActive(item.to) ? 'text-indigo-500' : 'text-slate-400'" v-html="item.svg"></span>
-              <div class="flex-1">
-                <div :class="isActive(item.to) ? 'text-indigo-700' : 'text-slate-700'">{{ item.label }}</div>
-                <div class="text-[11px] text-slate-400 font-medium mt-0.5">{{ item.desc }}</div>
-              </div>
-              <span v-if="isActive(item.to)" class="w-2 h-2 rounded-full bg-indigo-500 shadow-[0_0_6px_2px_rgba(99,102,241,0.4)]"></span>
-              <svg v-else class="w-4 h-4 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
-            </NuxtLink>
-          </nav>
-
-          <!-- Bottom Auth -->
-          <div class="flex gap-3 mt-5 pt-4 border-t border-slate-100">
-            <NuxtLink @click="mobileExpanded = false" to="/member/login" class="flex-1 rounded-2xl border border-slate-200 bg-white py-4 text-center text-sm font-bold text-slate-600 hover:bg-slate-50 transition-all active:scale-[0.98]">Masuk</NuxtLink>
-            <NuxtLink @click="mobileExpanded = false" to="/register" class="flex-1 rounded-2xl bg-gradient-to-r from-indigo-500 to-cyan-400 py-4 text-center text-sm font-bold text-white shadow-lg shadow-indigo-500/25 hover:shadow-xl transition-all active:scale-[0.98]">Daftar</NuxtLink>
           </div>
         </div>
       </div>
@@ -144,8 +171,13 @@
 </template>
 
 <script setup>
+import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
 const route = useRoute()
 const mobileExpanded = ref(false)
+const isDragging = ref(false)
+const sheetTranslateY = ref(1000)
+const previewHeight = ref(180)
+const previewRef = ref(null)
 
 const svgIcons = {
   home: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>',
@@ -173,39 +205,92 @@ const isActive = (to) => {
   return route.path.startsWith(to)
 }
 
-// Lock body scroll when expanded
-watch(mobileExpanded, (val) => {
-  if (val) {
-    document.body.style.overflow = 'hidden'
-    document.body.style.position = 'fixed'
-    document.body.style.width = '100%'
-    document.body.style.top = `-${window.scrollY}px`
+// Logic to determine baseline sheet offset
+const updateSheetPosition = () => {
+  if (typeof window === 'undefined') return
+  if (mobileExpanded.value) {
+    sheetTranslateY.value = 0
   } else {
-    const scrollY = document.body.style.top
+    // 28px is approximate handle area height
+    const h = previewRef.value ? previewRef.value.offsetHeight + 28 : previewHeight.value
+    sheetTranslateY.value = window.innerHeight - h
+  }
+}
+
+onMounted(() => {
+  setTimeout(() => {
+    if (previewRef.value) {
+      previewHeight.value = previewRef.value.offsetHeight + 28
+    }
+    updateSheetPosition()
+  }, 100)
+  window.addEventListener('resize', updateSheetPosition)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('resize', updateSheetPosition)
+})
+
+watch(mobileExpanded, () => {
+  updateSheetPosition()
+  if (mobileExpanded.value) {
+    document.body.style.overflow = 'hidden'
+  } else {
     document.body.style.overflow = ''
-    document.body.style.position = ''
-    document.body.style.width = ''
-    document.body.style.top = ''
-    window.scrollTo(0, parseInt(scrollY || '0') * -1)
   }
 })
 
-// Swipe gestures on sheet
-let sheetStartY = 0
-let sheetCurrentY = 0
-const onSheetTouchStart = (e) => {
-  sheetStartY = e.touches[0].clientY
-  sheetCurrentY = sheetStartY
+const openMenu = () => {
+  mobileExpanded.value = true
 }
-const onSheetTouchMove = (e) => {
-  sheetCurrentY = e.touches[0].clientY
+
+const closeMenu = () => {
+  mobileExpanded.value = false
 }
-const onSheetTouchEnd = () => {
-  const delta = sheetStartY - sheetCurrentY
-  if (!mobileExpanded.value && delta > 40) mobileExpanded.value = true
-  if (mobileExpanded.value && delta < -60) mobileExpanded.value = false
+
+// Swipe gestures for flexible animations
+let startY = 0
+let currentY = 0
+
+const onDragStart = (e) => {
+  startY = e.touches[0].clientY
+  currentY = startY
+  isDragging.value = true
+}
+
+const onDragMove = (e) => {
+  if (!isDragging.value) return
+  currentY = e.touches[0].clientY
+  const delta = currentY - startY
+  
+  if (mobileExpanded.value) {
+    // Already open, drag down
+    if (delta > 0) {
+      sheetTranslateY.value = delta
+    }
+  } else {
+    // Closed, drag up
+    if (delta < 0) {
+      const h = previewHeight.value
+      sheetTranslateY.value = window.innerHeight - h + delta
+    }
+  }
+}
+
+const onDragEnd = () => {
+  isDragging.value = false
+  const delta = currentY - startY
+  
+  if (!mobileExpanded.value && delta < -50) {
+    mobileExpanded.value = true
+  } else if (mobileExpanded.value && delta > 50) {
+    mobileExpanded.value = false
+  } else {
+    // Snap back
+    updateSheetPosition()
+  }
 }
 
 // Close on route change
-watch(() => route.path, () => { mobileExpanded.value = false })
+watch(() => route.path, closeMenu)
 </script>

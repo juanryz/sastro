@@ -1,13 +1,6 @@
 <template>
   <div class="bg-gradient-to-br from-indigo-50 via-white to-sky-50 text-slate-900">
     <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-10">
-      <!-- Logo in Hero -->
-      <div class="flex items-center gap-4 mb-10 w-64 md:w-80">
-        <div class="w-full h-auto flex items-center justify-start flex-shrink-0">
-          <img src="/logo.png" alt="Sastra Jendra Hayuningrat" class="w-full h-auto object-contain drop-shadow-md" />
-        </div>
-      </div>
-
       <div class="grid gap-10 lg:grid-cols-2 items-center">
         <div>
           <p class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-100 text-indigo-800 text-indigo-600 text-xs font-semibold uppercase tracking-[0.2em]">Terbaru</p>
