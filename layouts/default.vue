@@ -1,33 +1,35 @@
 <template>
-  <div class="min-h-screen bg-slate-50 text-slate-900">
-    <header class="sticky top-0 z-50 backdrop-blur-lg bg-white/70 shadow-sm border-b border-white/60">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between h-16">
-          <NuxtLink to="/" class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-3xl bg-gradient-to-r from-indigo-500 via-blue-500 to-sky-400 flex items-center justify-center text-sm font-extrabold text-white">SJ</div>
-            <div>
-              <p class="text-sm font-semibold tracking-wide">Sastro Jendro</p>
-              <p class="text-xs text-slate-600">Budaya | Kesenian | Komunitas</p>
-            </div>
-          </NuxtLink>
-
-          <div class="hidden md:flex items-center gap-4 text-sm font-medium text-slate-800">
-            <NuxtLink to="/" class="hover:text-indigo-600 transition">Beranda</NuxtLink>
-            <NuxtLink to="/berita" class="hover:text-indigo-600 transition">Berita</NuxtLink>
-            <NuxtLink to="/struktur" class="hover:text-indigo-600 transition">Struktur</NuxtLink>
-            <NuxtLink to="/kontak" class="hover:text-indigo-600 transition">Kontak</NuxtLink>
+  <div class="min-h-screen bg-slate-50 text-slate-900 pb-32 relative overflow-x-hidden">
+    <!-- Floating Bottom Navbar (Dock) -->
+    <header class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-[96%] max-w-6xl">
+      <div class="rounded-full backdrop-blur-2xl bg-white/40 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] border border-white/60 p-2 flex items-center justify-between">
+        <!-- Logo -->
+        <NuxtLink to="/" class="flex items-center gap-3 pl-2 group">
+          <div class="w-11 h-11 rounded-full bg-gradient-to-tr from-indigo-500 to-cyan-400 flex items-center justify-center text-sm font-black text-white shadow-md group-hover:shadow-lg group-hover:scale-105 transition-all duration-300">SJ</div>
+          <div class="hidden lg:block">
+            <p class="text-sm font-extrabold tracking-wide text-slate-800">Sastro Jendro</p>
           </div>
+        </NuxtLink>
 
-          <div class="flex items-center gap-2">
-            
-            <NuxtLink to="/member/login" class="rounded-xl border border-indigo-400 px-3 py-1.5 text-indigo-600 hover:bg-indigo-100 text-indigo-800 transition">Masuk</NuxtLink>
-            <NuxtLink to="/register" class="rounded-xl bg-gradient-to-r from-indigo-600 to-blue-500 px-3 py-1.5 text-white font-semibold hover:opacity-90 transition">Daftar</NuxtLink>
-          </div>
+        <!-- Navigation Menus -->
+        <nav class="hidden md:flex items-center bg-white/50 rounded-full px-2 py-1 shadow-inner border border-white/50">
+          <NuxtLink to="/" class="px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider text-slate-600 hover:bg-white hover:text-indigo-600 hover:shadow-sm transition-all duration-300">Beranda</NuxtLink>
+          <NuxtLink to="/berita" class="px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider text-slate-600 hover:bg-white hover:text-indigo-600 hover:shadow-sm transition-all duration-300">Berita</NuxtLink>
+          <NuxtLink to="/struktur" class="px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider text-slate-600 hover:bg-white hover:text-indigo-600 hover:shadow-sm transition-all duration-300">Struktur</NuxtLink>
+          <NuxtLink to="/yayasan" class="px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider text-slate-600 hover:bg-white hover:text-indigo-600 hover:shadow-sm transition-all duration-300">Yayasan</NuxtLink>
+          <NuxtLink to="/koperasi" class="px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider text-slate-600 hover:bg-white hover:text-indigo-600 hover:shadow-sm transition-all duration-300">Koperasi</NuxtLink>
+          <NuxtLink to="/kontak" class="px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider text-slate-600 hover:bg-white hover:text-indigo-600 hover:shadow-sm transition-all duration-300">Kontak</NuxtLink>
+        </nav>
+
+        <!-- Auth Buttons -->
+        <div class="flex items-center gap-2 pr-1">
+          <NuxtLink to="/member/login" class="rounded-full border border-white/80 bg-white/60 px-5 py-2.5 text-sm font-bold text-slate-700 hover:bg-white hover:shadow-md transition-all duration-300">Masuk</NuxtLink>
+          <NuxtLink to="/register" class="rounded-full bg-slate-900 border border-slate-700 px-5 py-2.5 text-sm font-bold text-white shadow-lg shadow-slate-900/20 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300">Daftar</NuxtLink>
         </div>
       </div>
     </header>
 
-    <main class="flex-grow">
+    <main class="flex-grow pt-8">
       <slot />
     </main>
 
@@ -43,6 +45,8 @@
             <li><NuxtLink to="/" class="hover:text-indigo-600">Beranda</NuxtLink></li>
             <li><NuxtLink to="/berita" class="hover:text-indigo-600">Berita</NuxtLink></li>
             <li><NuxtLink to="/struktur" class="hover:text-indigo-600">Struktur</NuxtLink></li>
+            <li><NuxtLink to="/yayasan" class="hover:text-indigo-600">Yayasan</NuxtLink></li>
+            <li><NuxtLink to="/koperasi" class="hover:text-indigo-600">Koperasi</NuxtLink></li>
             <li><NuxtLink to="/kontak" class="hover:text-indigo-600">Kontak</NuxtLink></li>
           </ul>
         </div>
