@@ -1,25 +1,51 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-sky-50 via-indigo-50 to-white flex items-center justify-center p-4">
-    <div class="w-full max-w-3xl rounded-3xl bg-white/60 backdrop-blur-xl border border-white/60 p-6 md:p-8 shadow-2xl shadow-slate-200/50">
-      <div class="text-center text-slate-900 mb-4">
-        <div class="inline-flex items-center gap-2 rounded-full bg-indigo-500/20 px-3 py-1 text-xs uppercase tracking-[0.2em] font-semibold">Material 3</div>
-        <h1 class="text-3xl font-bold mt-3">Daftar Anggota</h1>
-        <p class="text-slate-600 mt-1">Daftar cepat lewat Google atau form.</p>
+  <div class="relative min-h-screen flex items-center justify-center p-4 overflow-hidden bg-slate-50">
+    <div class="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] rounded-full bg-indigo-400/30 blur-[120px] pointer-events-none"></div>
+    <div class="absolute top-[20%] -right-[10%] w-[40%] h-[40%] rounded-full bg-cyan-400/30 blur-[120px] pointer-events-none"></div>
+    <div class="absolute -bottom-[10%] left-[20%] w-[60%] h-[50%] rounded-full bg-sky-400/30 blur-[120px] pointer-events-none"></div>
+
+    <div class="relative z-10 w-full max-w-3xl rounded-[2.5rem] bg-white/40 backdrop-blur-2xl border border-white/60 p-8 md:p-10 shadow-[0_8px_32px_0_rgba(31,38,135,0.05)]">
+      <div class="text-center text-slate-900 mb-8">
+        <div class="inline-flex items-center gap-2 rounded-full bg-indigo-500/10 border border-indigo-500/20 px-4 py-1.5 text-xs uppercase tracking-[0.2em] font-bold text-indigo-700 shadow-sm backdrop-blur-sm">Sastro Jendro</div>
+        <h1 class="text-4xl font-black mt-4 bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-600 tracking-tight">Daftar Anggota</h1>
+        <p class="text-slate-600 mt-2 font-medium">Bergabung dan nikmati berbagai keuntungan.</p>
       </div>
-      <div class="grid gap-3 md:grid-cols-2">
-        <button @click="registerWithGoogle" class="flex items-center gap-2 rounded-3xl border border-white/60 bg-white/70 shadow-sm backdrop-blur-sm px-3 py-2 text-left text-slate-900 hover:bg-white/80"><span>🟢</span><div><div class="font-semibold">Daftar dengan Google</div><div class="text-xs text-slate-500">Tanpa password</div></div></button>
-        <div class="rounded-3xl border border-white/60 bg-white/70 shadow-sm backdrop-blur-sm p-3 text-slate-800"><div class="text-xs uppercase tracking-[0.15em] text-slate-500">Keuntungan</div><ul class="mt-2 space-y-1 text-sm"><li>• Kartu digital</li><li>• Akses event</li><li>• Info komunitas</li></ul></div>
+      <div class="grid gap-4 md:grid-cols-2">
+        <button @click="registerWithGoogle" class="group flex items-center gap-4 rounded-[1.5rem] border border-white/50 bg-white/30 hover:bg-white/50 shadow-sm backdrop-blur-md px-5 py-5 text-left text-slate-800 transition-all duration-300 hover:shadow-md hover:-translate-y-0.5">
+          <svg class="h-8 w-8 transition-transform group-hover:scale-110" viewBox="0 0 24 24">
+            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+          </svg>
+          <div><div class="font-bold text-lg">Daftar dengan Google</div><div class="text-sm text-slate-500 font-semibold mt-0.5">Lebih Cepat & Praktis</div></div>
+        </button>
+        <div class="rounded-[1.5rem] border border-white/50 bg-white/30 shadow-sm backdrop-blur-md p-5 text-slate-800 transition-all hover:bg-white/40">
+          <div class="text-xs uppercase tracking-[0.2em] font-bold text-indigo-600 mb-3">Keuntungan</div>
+          <ul class="space-y-2.5 text-sm font-semibold text-slate-700">
+            <li class="flex items-center gap-3"><div class="rounded-full bg-emerald-100 text-emerald-600 p-1"><svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg></div> Kartu member digital</li>
+            <li class="flex items-center gap-3"><div class="rounded-full bg-emerald-100 text-emerald-600 p-1"><svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg></div> Akses event eksklusif</li>
+            <li class="flex items-center gap-3"><div class="rounded-full bg-emerald-100 text-emerald-600 p-1"><svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg></div> Jejaring komunitas elit</li>
+          </ul>
+        </div>
       </div>
-      <div class="mt-4 border-t border-white/50 pt-4">
-        <form @submit.prevent="submitRegistration" class="space-y-3">
-          <div class="grid gap-2 md:grid-cols-2"><input v-model="form.fullName" required placeholder="Nama lengkap" class="rounded-3xl border border-white/60 bg-white/70 shadow-sm backdrop-blur-sm px-3 py-2 text-slate-900 placeholder-slate-400" /><input v-model="form.email" required type="email" placeholder="Email" class="rounded-3xl border border-white/60 bg-white/70 shadow-sm backdrop-blur-sm px-3 py-2 text-slate-900 placeholder-slate-400" /></div>
-          <div class="grid gap-2 md:grid-cols-2"><input v-model="form.password" required type="password" placeholder="Password" class="rounded-3xl border border-white/60 bg-white/70 shadow-sm backdrop-blur-sm px-3 py-2 text-slate-900 placeholder-slate-400" /><input v-model="form.confirmPassword" required type="password" placeholder="Ulangi password" class="rounded-3xl border border-white/60 bg-white/70 shadow-sm backdrop-blur-sm px-3 py-2 text-slate-900 placeholder-slate-400" /></div>
-          <div class="flex items-center gap-2"><input id="agree" v-model="form.agreeTerms" type="checkbox" class="h-4 w-4 rounded border-white/60 bg-white/70 shadow-sm backdrop-blur-sm text-indigo-500" /><label for="agree" class="text-slate-600 text-sm">Setuju syarat & kebijakan</label></div>
-          <div v-if="error" class="rounded-3xl border border-red-200 bg-red-50 p-2 text-xs text-red-600">{{ error }}</div>
-          <div v-if="successMessage" class="rounded-3xl border border-emerald-200 bg-emerald-50 p-2 text-xs text-emerald-600">{{ successMessage }}</div>
-          <button type="submit" :disabled="isSubmitting" class="w-full rounded-3xl bg-gradient-to-r from-indigo-500 to-cyan-400 py-2 text-white font-semibold shadow-md hover:shadow-lg">{{ isSubmitting ? 'Mendaftar...' : 'Daftar Sekarang' }}</button>
+      <div class="mt-8 border-t border-slate-200/50 pt-8 relative">
+        <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-slate-50/80 backdrop-blur-sm px-4 text-xs font-bold uppercase tracking-[0.2em] text-slate-400 rounded-full">Atau Secara Manual</div>
+        <form @submit.prevent="submitRegistration" class="space-y-4">
+          <div class="grid gap-4 md:grid-cols-2">
+            <input v-model="form.fullName" required placeholder="Nama Lengkap" class="w-full rounded-2xl border border-white/40 bg-white/30 backdrop-blur-md px-4 py-3.5 text-slate-800 font-medium placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-400/50 focus:bg-white/50 transition-all shadow-inner shadow-white/40" />
+            <input v-model="form.email" required type="email" placeholder="Alamat Email" class="w-full rounded-2xl border border-white/40 bg-white/30 backdrop-blur-md px-4 py-3.5 text-slate-800 font-medium placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-400/50 focus:bg-white/50 transition-all shadow-inner shadow-white/40" />
+          </div>
+          <div class="grid gap-4 md:grid-cols-2">
+            <input v-model="form.password" required type="password" placeholder="Password" class="w-full rounded-2xl border border-white/40 bg-white/30 backdrop-blur-md px-4 py-3.5 text-slate-800 font-medium placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-400/50 focus:bg-white/50 transition-all shadow-inner shadow-white/40" />
+            <input v-model="form.confirmPassword" required type="password" placeholder="Ulangi Password" class="w-full rounded-2xl border border-white/40 bg-white/30 backdrop-blur-md px-4 py-3.5 text-slate-800 font-medium placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-400/50 focus:bg-white/50 transition-all shadow-inner shadow-white/40" />
+          </div>
+          <div class="flex items-center gap-3 py-1">
+            <input id="agree" v-model="form.agreeTerms" type="checkbox" class="h-5 w-5 rounded-md border-white/60 bg-white/50 shadow-sm backdrop-blur-sm text-indigo-500 focus:ring-indigo-400/50" />
+            <label for="agree" class="text-slate-600 text-sm font-semibold cursor-pointer">Saya setuju dengan syarat & ketentuan</label>
+          </div>
+          <div v-if="error" class="rounded-2xl border border-red-200 bg-red-50/80 backdrop-blur-sm p-3 text-sm font-semibold text-red-600 text-center">{{ error }}</div>
+          <div v-if="successMessage" class="rounded-2xl border border-emerald-200 bg-emerald-50/80 backdrop-blur-sm p-3 text-sm font-semibold text-emerald-600 text-center">{{ successMessage }}</div>
+          <button type="submit" :disabled="isSubmitting" class="w-full rounded-2xl bg-slate-900 border border-slate-700 py-4 mt-2 text-white font-bold tracking-wide shadow-lg shadow-slate-900/20 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 disabled:opacity-70 disabled:hover:translate-y-0">{{ isSubmitting ? 'Mendaftar...' : 'Daftar Sekarang' }}</button>
         </form>
-        <p class="mt-3 text-center text-slate-600 text-sm">Sudah punya akun? <NuxtLink to="/member/login" class="text-blue-600 hover:text-indigo-800 font-semibold">Masuk</NuxtLink></p>
+        <p class="mt-6 text-center text-slate-600 text-sm font-semibold">Sudah punya akun? <NuxtLink to="/member/login" class="text-indigo-600 hover:text-indigo-800 underline decoration-indigo-300 underline-offset-4">Masuk di sini</NuxtLink></p>
       </div>
     </div>
   </div>

@@ -1,19 +1,35 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-sky-50 via-indigo-50 to-white flex items-center justify-center p-4">
-    <div class="w-full max-w-md rounded-3xl bg-white/60 backdrop-blur-xl border border-white/60 p-6 shadow-xl shadow-slate-200/50">
-      <div class="text-center mb-5">
-        <div class="mx-auto w-14 h-14 rounded-3xl bg-gradient-to-br from-indigo-500 to-cyan-400 flex items-center justify-center text-white text-2xl font-bold">SJ</div>
-        <h1 class="mt-3 text-2xl font-bold text-slate-900">Member Sign In</h1>
-        <p class="text-slate-600">Masuk dengan akun atau Google.</p>
+  <div class="relative min-h-screen flex items-center justify-center p-4 overflow-hidden bg-slate-50">
+    <!-- Premium Blur Blobs -->
+    <div class="absolute top-[10%] -left-[10%] w-[50%] h-[50%] rounded-full bg-indigo-400/30 blur-[120px] pointer-events-none"></div>
+    <div class="absolute bottom-[10%] -right-[10%] w-[50%] h-[50%] rounded-full bg-cyan-400/30 blur-[120px] pointer-events-none"></div>
+
+    <div class="relative z-10 w-full max-w-md rounded-[2.5rem] bg-white/40 backdrop-blur-2xl border border-white/60 p-8 shadow-[0_8px_32px_0_rgba(31,38,135,0.05)]">
+      <div class="text-center mb-6">
+        <div class="mx-auto w-16 h-16 rounded-[1.5rem] bg-gradient-to-br from-indigo-500 to-cyan-400 shadow-lg shadow-indigo-500/30 flex items-center justify-center text-white text-2xl font-black tracking-tighter">SJ</div>
+        <h1 class="mt-5 text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-600">Sign In</h1>
+        <p class="text-slate-600 font-medium mt-1">Selamat datang kembali, Member!</p>
       </div>
-      <button @click="loginWithGoogle" class="w-full rounded-3xl border border-white/60 bg-white/70 shadow-sm backdrop-blur-sm py-2.5 text-sm font-semibold text-slate-900 hover:bg-white/80 flex items-center justify-center gap-2">🟢 Sign in with Google</button>
-      <div class="mt-4 text-slate-500 text-center text-xs uppercase tracking-[0.2em]">atau</div>
-      <form @submit.prevent="login" class="mt-3 space-y-3">
-        <input v-model="credentials.username" type="text" placeholder="Email atau Username" required class="w-full rounded-3xl border border-white/60 bg-white/70 shadow-sm backdrop-blur-sm px-3 py-2 text-slate-900 placeholder-slate-400" />
-        <input v-model="credentials.password" type="password" placeholder="Password" required class="w-full rounded-3xl border border-white/60 bg-white/70 shadow-sm backdrop-blur-sm px-3 py-2 text-slate-900 placeholder-slate-400" />
-        <button type="submit" :disabled="isLoading" class="w-full rounded-3xl bg-gradient-to-r from-indigo-500 to-cyan-400 py-2 text-white font-semibold shadow-md hover:shadow-lg">{{ isLoading ? 'Memproses...' : 'Masuk' }}</button>
+      
+      <button @click="loginWithGoogle" class="group w-full rounded-2xl border border-white/50 bg-white/30 shadow-sm backdrop-blur-md py-3.5 px-4 font-bold text-slate-700 hover:bg-white/60 hover:shadow-md transition-all duration-300 flex items-center justify-center gap-3">
+        <svg class="h-6 w-6 transition-transform group-hover:scale-110" viewBox="0 0 24 24">
+          <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+        </svg>
+        Sign in with Google
+      </button>
+
+      <div class="my-6 flex items-center gap-3 text-slate-400 text-xs uppercase tracking-[0.2em] font-bold">
+        <div class="h-px w-full bg-slate-300/50"></div>
+        <span>atau</span>
+        <div class="h-px w-full bg-slate-300/50"></div>
+      </div>
+
+      <form @submit.prevent="login" class="space-y-4">
+        <input v-model="credentials.username" type="text" placeholder="Email atau Username" required class="w-full rounded-2xl border border-white/40 bg-white/30 backdrop-blur-md px-4 py-3.5 text-slate-800 font-medium placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-400/50 focus:bg-white/50 transition-all shadow-inner shadow-white/40" />
+        <input v-model="credentials.password" type="password" placeholder="Password" required class="w-full rounded-2xl border border-white/40 bg-white/30 backdrop-blur-md px-4 py-3.5 text-slate-800 font-medium placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-400/50 focus:bg-white/50 transition-all shadow-inner shadow-white/40" />
+        <button type="submit" :disabled="isLoading" class="w-full rounded-2xl bg-slate-900 border border-slate-700 py-3.5 text-white font-bold tracking-wide shadow-lg shadow-slate-900/20 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 disabled:opacity-70 disabled:hover:translate-y-0">{{ isLoading ? 'Memproses...' : 'Sign In Secara Manual' }}</button>
       </form>
-      <div v-if="error" class="mt-3 rounded-3xl border border-red-200 bg-red-50 p-2 text-xs text-red-600">{{ error }}</div>
+      <div v-if="error" class="mt-4 rounded-2xl border border-red-200 bg-red-50/80 backdrop-blur-sm p-3 text-xs font-semibold text-red-600 text-center">{{ error }}</div>
       <div class="mt-4 text-center text-slate-600 text-sm">Belum punya akun? <NuxtLink to="/register" class="text-blue-600 hover:text-indigo-800 font-semibold">Daftar</NuxtLink></div>
     </div>
   </div>
